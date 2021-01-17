@@ -1,0 +1,5 @@
+
+
+
+#include "AutoSiegeGameInstance.h"
+
