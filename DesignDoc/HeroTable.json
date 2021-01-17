@@ -1,0 +1,2074 @@
+[
+	{
+		"Name": "AFKay",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Skip your first two turns. Start with a minion from Tavern Tier 3 and 4"
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "Bartendotron",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Reduce the cost of Tavern Tiers by (1)."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "BrannBronzebeard",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "After you play a Battlecry minion, give a random friendly minion +1/+1"
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "DancinDeryl",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "After you sell a minion, randomly give two minions in Bob's Tavern +1/+1. "
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "EliseStarseeker",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "When you upgrade Bob's Tavern get a \"Recruitment Map\" (Spend 3 Gold, discover a minion and hire it)"
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "GeorgeTheFallen",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Give a friendly minion Divine Shield."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 4,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "Giantfin",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "At the start of next combat, give your minions \"Deathrattle: Summon a 1/1 Murloc\"."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 2,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "InfiniteToki",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Refresh Bob's Tavern. The last minion will be from a higher Tavern Tier. "
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 2,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "KingMukla",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Whenever you buy a Beast, add a Banana to your hand."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "LichBazHial",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Take 3 damage and add a Gold Coin to your hand."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "LordJaraxxus",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Give your Demons +1/+1"
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 2,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "MillificentManastorm",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Mechs in Bob's Tavern have +1/+1."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "Nefarian",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "At the start of next combat, deal 1 damage to all enemy minons."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 1,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "PatchesThePirate",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "At the start of the next combat, deal 3 damage to two random enemy minions. "
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 1,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "Patchwerk",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Start with 60 Health instead of 40"
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "ProfessorPutricide",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "At the start of next combat, give your left-most minion +10 Attack."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 1,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "Pyramad",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Give a random friendly minion +2 Health."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 1,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "QueenWagtoggle",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Give a random friendly Mech, Demon, Murloc, and Beast +1 Health."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 1,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "RagnarosTheFirelord",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "At the start of next combat, deal 8 damage to two random enemy minions."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 2,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "Shudderwock",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Your next Battlecry this turn triggers twice. "
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 2,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "Sindragosa",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "At the end of your turn, Frozen minions get +1/+1"
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "SirFinleyMrrgglton",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Give a random friendly minion +1/+1. After you sell a minion, refresh this. "
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 1,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "TheCurator",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Start the game with a 1/1 Amalgam that has all minion types."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "TheGreatAkazamzarak",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Discover a Secret. Put it into the battlefield."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 2,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "TheLichKing",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "At the start of next combat, give your right-most minion Reborn. "
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 1,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "TheRatKing",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Whenever you buy a Beast, Mech, Murloc/Demon, give it +1/+2. Swaps type each turn"
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 0,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "TradePrinceGallywix",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Add a Gold Coin to your hand."
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 1,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	},
+	{
+		"Name": "YoggSaronHopesEnd",
+		"Class": "All",
+		"Type": "H E R O",
+		"Rarity": "Tier 1",
+		"Special": false,
+		"Visual":
+		{
+			"Frame_Texture": "None",
+			"Image_Texture": "None",
+			"Back_Texture": "None",
+			"Frame_Material": "None",
+			"Image_Material": "None",
+			"Back_material": "None"
+		},
+		"Attack":
+		{
+			"Damage": 0,
+			"Mana_Cost": 0,
+			"CanAttackPlayer": true,
+			"CanAttackCards": true,
+			"Damage_Type": "Basic",
+			"Attack_Particle": "None",
+			"Attack_SoundCue": "None"
+		},
+		"Health":
+		{
+			"Health": 1,
+			"Life_Expectancy": 0,
+			"Dealth_Particle": "None",
+			"Sound_Cue_Death": "None"
+		},
+		"Abilities": [
+			{
+				"Type": "None",
+				"Ability_Int": 0,
+				"Trigger": "None",
+				"After_Use_State": "Remain In Play",
+				"Affecting_Player": "Self",
+				"Particle": "None",
+				"SoundCue": "None"
+			}
+		],
+		"Description":
+		{
+			"Description": "Hire a random minion in Bob's Tavern and give it +1/+1"
+		},
+		"Placement_Settings":
+		{
+			"Owner": "Self",
+			"Mana_Cost": 2,
+			"Entry_Particle": "None",
+			"Entry_SoundCue": "None"
+		},
+		"DeckSettings":
+		{
+			"Unlocked": true,
+			"AddToPlayerDeck": true,
+			"MaxNumInDeck": 3,
+			"Weight": 0,
+			"ScreenSize":
+			{
+				"X": 512,
+				"Y": 768
+			}
+		},
+		"Card_System_Data":
+		{
+			"Card_Purpose": [],
+			"Card_Value": 0,
+			"PlayConditions": [],
+			"InteractionConditions": []
+		}
+	}
+]

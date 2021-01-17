@@ -1,0 +1,84 @@
+﻿Name,Class,Type,Rarity,Special,Attack,Health,Mana
+Alleycat,Beast,,1,Battlecry: Summon a 1/1 Cat,1,1,1
+Dire Wolf Alpha,Beast,,1,Adjacent minions have +1 Attack,2,2,1
+Mecharoo,Mech,,1,Deathrattle: Summon a 1/1 Jo-E Bot,1,1,1
+Micro Machine,Mech,,1,"At the start of each turn, gain + Attack",1,2,1
+Murcloc Tidecaller,Murloc,,1,"Whenever you summon a Murloc, gain +1 Attack",1,2,1
+Murloc Tidehunter,Murloc,,1,Battlecry: Summon a 1/1 Murloc Scout,2,1,1
+Righteous Protector,Neutral,,1,Taunt. Divine Shield,1,1,1
+Rockpool Hunter,Murloc,,1,Battlecry: Give a friendly Murloc +1/+1,2,3,1
+Selfess Hero,Neutral,,1,Deathrattle: Give a random friendly minion Divine Shield,2,1,1
+Voidwalker,Demon,,1,Taunt,1,3,1
+Vulgar Homunculus,Demon,,1,Taunt. Battlecry: Deal 2 damage to your hero,2,4,1
+Wrath Weaver,Neutral,,1,"After you play a Demon, deal 1 damage to your hero and gain +2/+2",1,1,1
+Annoy-o-tron,Mech,,2,Taunt. Divine Shield,1,2,1
+Coldlight Seer,Murloc,,2,Battlecry: Give your other Murlocs +2 Health,2,3,1
+Harvest Golem,Mech,,2,Deathrattle: Summon a 2/1 Damaged Golem,2,3,1
+Kaboom Bot,Mech,,2,Deathrattle: Deal 4 damage to a random enemy minion,2,2,1
+Kindly Grandmother,Beast,,2,Deathrattle: Summon a 3/2 Big Bad Wolf,1,1,1
+Metaltooth Leaper,Mech,,2,Battlecry: Give your other Mechs +2 Attack,3,3,1
+Mounted Raptor,Beast,,2,Deathrattle: Summon a random 1-Cost minion,3,2,1
+Murloc Warleader,Murloc,,2,Your other Murlocs have +2 Attack,3,3,1
+Nathrezim Overseer,Demon,,2,Battlecry: Give a friendly Demon +2/+2,2,4,1
+Nightmare Amalgam,All,,2,"This is an Elemental, Mech, Demon, Murloc, Dragon, Beast, Pirate and Totem",3,4,1
+Old Murk-Eye,Murloc,,2,Charge. Has +1 Attack for each other Murloc on the battlefield,2,4,1
+Pogo-Hopper,Mech,,2,Battlecry: Gain +2/+2 for each other Pogo-Hopper you played this game,1,1,1
+Rat Pack,Beast,,2,Deathrattle: Summon a number of 1/1 rats equal to this minion’s Attack,2,2,1
+Scavaging Hyena,Beast,,2,"Whenever a friendly Beast dies, gain +2/+2",2,2,1
+Shielded Minibot,Mech,,2,Divine Shield,2,2,1
+Spawn Of N'Zoth,Neutral,,2,Deathrattle: Give your minions +1/+1,2,2,1
+Zoobot,Mech,,2,"Battlecry: Give a random friendly Beast, Dragon, and Murloc +1/+1",3,3,1
+Cobolt Guardian,Mech,,3,"Whenever you summon a Mech, gain Divine Shield",6,3,1
+Crowd Favourite,Neutral,,3,"Whenever you play a card with Battlecry, gain +1/+1",4,4,1
+Crystalweaver,Neutral,,3,Battlecry: Give your Demons +1/+1,5,4,1
+Floating Watcher,Demon,,3,"Whenever your hero takes damage on your turn, gain +4/+4",8,8,1
+Houndmaster,Neutral,,3,Battlecry: Give a friendly Beast +2/+2 and Taunt,4,3,1
+Imp Gang Boss,Demon,,3,"Whenever this minion takes damage, summon a 1/1 Imp",2,4,1
+Infested Wolf,Beast,,3,Deathrattle: Summon two 1/1 Spiders,3,3,1
+Khadgar,Neutral,,3,Your cards that summon minions summon twice as many,2,2,1
+Pack Leader,Neutral,,3,"Whenever you summon a Beast, give it +3 Attack",3,3,1
+Phalanx Commander,Neutral,,3,Your Taunt minions have +2 Attack,4,5,1
+Piloted Shredder,Mech,,3,Deathrattle: Summon a random 2-Cost minion,4,3,1
+Psych-O-Tron,Mech,,3,Taunt. Divine Shield,3,4,1
+Replacing Menace,Mech,,3,Magnetic. Deathrattle: Summon three 1/1 Microbots,3,1,1
+Screwjank Clunker,Mech,,3,Battlecry: Give a friendly Mech +2/+2,2,5,1
+Shifter Zerus,Neutral,,3,"Each turn this is in your hand, transform it into a random minion",1,1,1
+Soul Juggler,Neutral,,3,"Whenever a friendly Demon dies, deal 3 damage to a random enemy minion",3,3,1
+Tortollan Shellraiser,Neutral,,3,Taunt. Deathrattle: Give a random friendly minion +1/+1,2,6,1
+Annoy-O-Module,Mech,,4,Magnetic. Divine Shield. Taunt,2,6,1
+Bolvar Fireblood,Neutral,,4,"Divine Shield. After a friendly minion loses Divine Shield, gain +2 Attack",1,7,1
+Cave Hydra,Beast,,4,Also damages the minions next to whomever this attacks,2,4,1
+Defender Argus,Neutral,,4,Battlecry: Give adjacent minions +1/+1 and Taunt,2,3,1
+Festeroot Hulk,Neutral,,4,"After a friendly minion attacks, gain +1 Attack",2,7,1
+Iron Sensei,Mech,,4,"At the end of your turn, give another friendly Mech +2/+2",2,2,1
+Menagerie Magician,Neutral,,4,"Battlecry: Give a random friendly Beast, Dragon, and Murloc +2/+2",4,4,1
+Piloted Sky Golem,Mech,,4,Deathrattle: Summon a random 4-Cost minion,6,4,1
+Primalfin Lookout,Murloc,,4,"Battlecry: If you control another Murloc, Discover a Murloc",3,2,1
+Security Rover,Mech,,4,"Whenever this minion takes damage, summon a 2/3 Mech with Taunt",2,6,1
+Siegebreaker,Demon,,4,Taunt. Your other Demons have +1 Attack,5,8,1
+The Beast,Beast,,4,Deathrattle: Summon a 3/3 Finkle Einhorn for your opponent,9,8,1
+Toxfin,Murloc,,4,Battlecry: Give a friendly Murloc poisonous,1,2,1
+Virmen Sensei,Neutral,,4,Battlecry: Give a friendly Beast +2/+2,4,5,1
+Annihilian Battlemaster,Demon,,5,Battlecry: Gain +1 Health for each damage your hero has taken,3,1,1
+Baron Rivendare,Neutral,,5,Your minions trigger their Deathrattles twice,1,7,1
+Brann Bronzebeard,Neutral,,5,Your Battlecries trigger twice,2,4,1
+Goldrinn The Great Wolf,Beast,,5,Deathrattle: Give your Beasts +4/+4,4,4,1
+Ironhide Direhorn,Beast,,5,Overkill: Summon a 5/5 Ironhide Runt,7,7,1
+Junkbot,Mech,,5,"Whenever a friendly Mech dies, gain +2/+2",1,5,1
+King Bagurgle,Murloc,,5,Battlecry and Deathrattle: Give your other Murlocs +4/+4,12,6,1
+Lightfang Enforcer,Neutral,,5,"At the end of your turn, give a random friendly Murloc, Demon, and Beast +2/+1",2,2,1
+Mal-Ganis,Demon,,5,Your other Demons have +2/+2. Your hero is immune,9,7,1
+Mechano-Egg,Mech,,5,Deathrattle: Summon an 8/8 Robosaur,0,5,1
+Sated Threshadon,Beast,,5,Deathrattle: Summon three 1/1 Murlocs,5,7,1
+Savannah Highmane,Beast,,5,Deathrattle: Summon two 2/2 Hyenas,6,5,1
+Strongshell Scavenger,Neutral,,5,Battlecry: Give your Taunt minions +2/+2,2,3,1
+The Boogeymonster,Neutral,,5,"Whenever this attacks and kill a minion, gain +2/+2",6,7,1
+Voidlord,Demon,,5,Taunt. Deathrattle: Summon three 1/3 Demons with Taunt,3,9,1
+Foe Reaper 4000,Mech,,6,Also damages the minions next to whomever it attacks,6,9,1
+Gentle Megasaur,Beast,,6,Battlecry: Adapt your Murlocs,5,4,1
+Ghastcoiler,Beast,,6,Deathrattle: Summon 2 random Deathrattle minions,7,7,1
+Kangor's Apprentice,Neutral,,6,Deathrattle: Summon the first 2 friendly Mechs that died this combat,3,6,1
+Maexxna,Beast,,6,Poisonous,2,8,1
+Mama Bear,Beast,,6,"Whenever you summon a Beast, give it +4/+4",4,4,1
+Sneed's Old Shredder,Mech,,6,Summon a random Legendary minion,5,7,1
+Zapp Slywick,Neutral,,6,Windfury. This minion always attacks the enemy with the lowest Attack,7,10,1
