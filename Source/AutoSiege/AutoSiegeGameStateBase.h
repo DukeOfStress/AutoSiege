@@ -10,6 +10,13 @@ class AUTOSIEGE_API AAutoSiegeGameStateBase : public AGameStateBase
 	GENERATED_BODY()
 	
 public:
+
+
+
+
+
+
+
 	float RoundTimer;
 
 	// The current HP of every player

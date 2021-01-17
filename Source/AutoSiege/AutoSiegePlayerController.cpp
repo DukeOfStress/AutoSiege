@@ -11,38 +11,23 @@ void AAutoSiegePlayerController::BeginPlay()
 	Super::BeginPlay();
 
 	GameState_Ref = GetWorld() != NULL ? GetWorld()->GetGameState<AAutoSiegeGameStateBase>() : NULL;
-	PlayerState_Ref = GetPlayerState<AAutoSiegePlayerState>();
-
-	//if( HasAuthority() ){
-	//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("PlayerController::BeginPlay"));
-	//}
-	//
-	//TArray<UCameraComponent*> CameraComps;
-	//PlayerBoard->GetComponents<UCameraComponent>(CameraComps);
-
-	//if (PlayerState_Ref->PlayerIndex != NULL)
-	//{
-	//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("PlayerController::BeginPlay - %d"), PlayerState_Ref->PlayerIndex));
-	//}
 	
 	if ( !HasAuthority() )
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Client - PlayerController::BeginPlay"));
 
-		int r = rand();
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Rand - %d"), r));
-		
-		if ( r%2 == 0 ) // PlayerState_Ref->PlayerIndex == 1	This is probably not replicated, and causes a crash
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Banana"));
-			auto pb = GetWorld() != NULL ? GetWorld()->SpawnActor<ABoard>() : NULL;
-			SetViewTarget(pb);
-		}
+		auto pb = GetWorld() != NULL ? GetWorld()->SpawnActor<ABoard>() : NULL;
+		SetViewTarget(pb);
 	}
 
-
-
 }
+
+
+
+
+
+
+
 
 
 

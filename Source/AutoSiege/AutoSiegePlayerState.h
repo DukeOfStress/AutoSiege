@@ -17,4 +17,7 @@ public:
 	UPROPERTY(Replicated)
 	int PlayerIndex;
 
+	TArray<FName> AvailableHeroes;
+	FName ChosenHero;
+
 };

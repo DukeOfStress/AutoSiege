@@ -2,6 +2,12 @@
 
 AAutoSiegePlayerState::AAutoSiegePlayerState() 
 {
+    AvailableHeroes = {};
+
+
+
+
+
     //bReplicates = true;
 }
 

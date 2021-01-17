@@ -10,6 +10,14 @@
 
 #include "AutoSiegeGameModeBase.generated.h"
 
+UENUM()
+enum GameStage
+{
+	PlayerJoin,
+	HeroSelect
+};
+
+
 USTRUCT(BlueprintType)
 struct FHero : public FTableRowBase
 {
@@ -58,8 +66,11 @@ public:
 	TArray<AAutoSiegePlayerController*> PlayerControllerArray;
 	TArray<AAutoSiegePlayerState*> PlayerStateArray;
 
-//private:
-//	UDataTable HeroList;
-	//TArray<int> HeroPool;
+private:
+	UDataTable* HeroDataTable;
+	TArray<FName> HeroPool;
+	int NumberOfConnectedPlayers; // Kinda duplicated by PlayerControllerArray.Num() - 1
+
+	GameStage CurrentStage;
 
 };
