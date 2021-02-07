@@ -10,12 +10,12 @@ ABoard::ABoard()
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static Mesh Component"));
 	StaticMeshComponent->SetRelativeScale3D(FVector(41.25f, 23.75f, 1.0f));
 	
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> BoardMesh(TEXT("/Game/Meshes/SquarePlane_Mesh"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> BoardMesh(TEXT("StaticMesh'/Game/Meshes/SquarePlane_Mesh.SquarePlane_Mesh'"));
 	if (BoardMesh.Object != NULL){
 		StaticMeshComponent->SetStaticMesh( (UStaticMesh*)BoardMesh.Object );
 	}
 
-	static ConstructorHelpers::FObjectFinder<UMaterial> BoardMaterial(TEXT("/Game/Materials/Board_Mat"));
+	static ConstructorHelpers::FObjectFinder<UMaterial> BoardMaterial(TEXT("Material'/Game/Materials/Board_Mat.Board_Mat'"));
 	if( BoardMaterial.Object != NULL ){
 		StaticMeshComponent->SetMaterial( 0, (UMaterial*)BoardMaterial.Object );
 	}
@@ -25,11 +25,6 @@ ABoard::ABoard()
 	CameraComponent->SetRelativeLocation(FVector(0.0f, 0.0f, 1990.0f));
 	CameraComponent->SetRelativeRotation(FRotator(-90.0f, -90.0f, 0.0f));
 	CameraComponent->SetActive(true);
-
-
-	SkyLightComponent = CreateDefaultSubobject<USkyLightComponent>(TEXT("Sky Light Component"));
-	SkyLightComponent->SetRelativeLocation(FVector(100.0f, -200.0f, -150.0f));
-	SkyLightComponent->SetMobility(EComponentMobility::Stationary);
 
 
 	DirectionalLightComponent = CreateDefaultSubobject<UDirectionalLightComponent>(TEXT("Directional Light Component"));

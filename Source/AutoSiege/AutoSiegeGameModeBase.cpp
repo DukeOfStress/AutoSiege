@@ -1,5 +1,5 @@
 #include "AutoSiegeGameModeBase.h"
-#include "AutoSiegeGameStateBase.h"
+#include "AutoSiegeHUD.h"
 
 AAutoSiegeGameModeBase::AAutoSiegeGameModeBase(const class FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)
@@ -8,6 +8,7 @@ AAutoSiegeGameModeBase::AAutoSiegeGameModeBase(const class FObjectInitializer& O
 	GameStateClass = AAutoSiegeGameStateBase::StaticClass();
 	PlayerControllerClass = AAutoSiegePlayerController::StaticClass();
 	PlayerStateClass = AAutoSiegePlayerState::StaticClass();
+	HUDClass = AAutoSiegeHUD::StaticClass();
 	
 	static ConstructorHelpers::FObjectFinder<UDataTable> HeroDataObject(TEXT("DataTable'/Game/Data/Hero_DataTable.Hero_DataTable'"));
 	if (HeroDataObject.Succeeded())
@@ -17,9 +18,6 @@ AAutoSiegeGameModeBase::AAutoSiegeGameModeBase(const class FObjectInitializer& O
 
 	bPauseable = false;
 
-	NumberOfConnectedPlayers = 0;
-
-	CurrentStage = GameStage::PlayerJoin;
 }
 
 void AAutoSiegeGameModeBase::BeginPlay()
@@ -28,6 +26,9 @@ void AAutoSiegeGameModeBase::BeginPlay()
 	Super::BeginPlay();
 
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("GameMode::BeginPlay"));
+
+	GameState_Ref = GetGameState<AAutoSiegeGameStateBase>();
+	GameState_Ref->CurrentStage = GameStage::PlayerJoin;
 
 	HeroPool = HeroDataTable->GetRowNames();
 	// Shuffle HeroPool
@@ -46,7 +47,7 @@ void AAutoSiegeGameModeBase::PostLogin(APlayerController* NewPlayer)
 
 	Super::PostLogin(NewPlayer);
 
-	if( PlayerControllerArray.Num() <= MAX_NUM_PLAYERS ){
+	if( PlayerControllerArray.Num() <= GameState_Ref->TotalNumberOfPlayers){
 		PlayerControllerArray.AddUnique((AAutoSiegePlayerController*)NewPlayer);
 		
 		auto ps = (AAutoSiegePlayerState*)(NewPlayer->PlayerState);
@@ -57,16 +58,18 @@ void AAutoSiegeGameModeBase::PostLogin(APlayerController* NewPlayer)
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("GameMode::PostLogin - %d"), ps->PlayerIndex));
 
 		// Dish out heroes from the pool into the PlayerState
-		for (int i = NumberOfConnectedPlayers; i < NumberOfConnectedPlayers + 3; i++)
+		for (int i = GameState_Ref->NumberOfConnectedPlayers; i < GameState_Ref->TotalNumberOfPlayers; i++)
 		{
 			ps->AvailableHeroes.Add(HeroPool[i]);
 		}
-		NumberOfConnectedPlayers++;
+		GameState_Ref->NumberOfConnectedPlayers++;
 
-		if (PlayerControllerArray.Num() == MAX_NUM_PLAYERS)
+		if (PlayerControllerArray.Num() == GameState_Ref->TotalNumberOfPlayers)
 		{
-			CurrentStage = GameStage::HeroSelect;
+			GameState_Ref->CurrentStage = GameStage::HeroSelect;
 		}
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("GameMode::PostLogin::PlayerCount - %d"), GameState_Ref->NumberOfConnectedPlayers));
 
 	}
 

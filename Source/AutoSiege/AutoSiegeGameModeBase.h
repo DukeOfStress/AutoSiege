@@ -5,18 +5,11 @@
 
 #include "Engine/DataTable.h"
 
+#include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerController.h"
 #include "AutoSiegePlayerState.h"
 
 #include "AutoSiegeGameModeBase.generated.h"
-
-UENUM()
-enum GameStage
-{
-	PlayerJoin,
-	HeroSelect
-};
-
 
 USTRUCT(BlueprintType)
 struct FHero : public FTableRowBase
@@ -60,17 +53,14 @@ protected:
 	virtual void PostLogin(APlayerController* NewPlayer) override;
 
 public:
-	static const int MAX_NUM_PLAYERS = 3;
 	//static const float SHOP_ROUND_TIME_SECONDS = 120.f;
 
 	TArray<AAutoSiegePlayerController*> PlayerControllerArray;
 	TArray<AAutoSiegePlayerState*> PlayerStateArray;
+	AAutoSiegeGameStateBase* GameState_Ref;
 
 private:
 	UDataTable* HeroDataTable;
 	TArray<FName> HeroPool;
-	int NumberOfConnectedPlayers; // Kinda duplicated by PlayerControllerArray.Num() - 1
-
-	GameStage CurrentStage;
 
 };

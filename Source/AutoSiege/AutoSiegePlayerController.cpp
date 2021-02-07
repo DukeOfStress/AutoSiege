@@ -16,8 +16,12 @@ void AAutoSiegePlayerController::BeginPlay()
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Client - PlayerController::BeginPlay"));
 
-		auto pb = GetWorld() != NULL ? GetWorld()->SpawnActor<ABoard>() : NULL;
-		SetViewTarget(pb);
+		FVector Location(0.0f, 0.0f, 0.0f);
+		FRotator Rotation(0.0f, 0.0f, 0.0f);
+		FActorSpawnParameters SpawnInfo;
+
+		PlayerBoard = GetWorld()->SpawnActor<ABoard>(Location, Rotation, SpawnInfo);
+		SetViewTarget(PlayerBoard);
 	}
 
 }

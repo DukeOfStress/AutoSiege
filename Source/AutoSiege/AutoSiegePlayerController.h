@@ -26,9 +26,6 @@ public:
 	AAutoSiegeGameStateBase* GameState_Ref;
 	AAutoSiegePlayerState* PlayerState_Ref;
 
-	ABoard* PlayerBoard;
-	UCameraComponent* PlayerCamera;
-
 	DECLARE_EVENT(AAutoSiegePlayerController, FClientPostLoginEvent)
 	FClientPostLoginEvent& OnClientPostLoginEvent() { return ClientPostLoginEvent; };
 
@@ -37,6 +34,8 @@ public:
 
 private:
 	FClientPostLoginEvent ClientPostLoginEvent;
+	ABoard* PlayerBoard;
+
 };
 
 
