@@ -40,6 +40,19 @@ void AAutoSiegeGameModeBase::BeginPlay()
 		HeroPool[j] = temp;
 	}
 
+	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AAutoSiegeGameModeBase::RepeatingFunction, 1.0f, true, 2.0f);
+
+}
+
+// TODO: Place this somewhere else probably. This is just for testing.
+void AAutoSiegeGameModeBase::RepeatingFunction()
+{
+	GameState_Ref->RoundTimer--;
+
+	if (GameState_Ref->RoundTimer <= 0.f)
+	{
+		GetWorldTimerManager().ClearTimer(MemberTimerHandle);
+	}
 }
 
 void AAutoSiegeGameModeBase::PostLogin(APlayerController* NewPlayer)

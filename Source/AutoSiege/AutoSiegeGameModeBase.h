@@ -4,6 +4,7 @@
 #include "GameFramework/GameModeBase.h"
 
 #include "Engine/DataTable.h"
+#include "Engine/EngineTypes.h"
 
 #include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerController.h"
@@ -53,6 +54,9 @@ protected:
 	virtual void PostLogin(APlayerController* NewPlayer) override;
 
 public:
+	FTimerHandle MemberTimerHandle;
+
+
 	//static const float SHOP_ROUND_TIME_SECONDS = 120.f;
 
 	TArray<AAutoSiegePlayerController*> PlayerControllerArray;
@@ -62,5 +66,7 @@ public:
 private:
 	UDataTable* HeroDataTable;
 	TArray<FName> HeroPool;
+
+	void RepeatingFunction();
 
 };

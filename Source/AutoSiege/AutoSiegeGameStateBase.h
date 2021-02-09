@@ -15,20 +15,30 @@ UCLASS()
 class AUTOSIEGE_API AAutoSiegeGameStateBase : public AGameStateBase
 {
 	GENERATED_BODY()
-	
+
 public:
-	UPROPERTY(Replicated)
-	float RoundTimer;
+	UPROPERTY(ReplicatedUsing = OnRep_RoundTimer)
+	float RoundTimer = 60.f;
 
-	UPROPERTY(Replicated)
-	int PlayerHealth [8];
+	//UPROPERTY(Replicated)
+	//int PlayerHealth [8];
 
-	UPROPERTY(Replicated)
-	int NumberOfConnectedPlayers;
+	int NumberOfConnectedPlayers = 0;
+
+	UPROPERTY(ReplicatedUsing = OnRep_NumberOfReadyPlayers)
+	int NumberOfReadyPlayers = 0;
 
 	const int TotalNumberOfPlayers = 3;
 
 	GameStage CurrentStage;
 
 	// Current matchups
+
+private:
+	UFUNCTION()
+	void OnRep_RoundTimer();
+
+	UFUNCTION()
+	void OnRep_NumberOfReadyPlayers();
+
 };

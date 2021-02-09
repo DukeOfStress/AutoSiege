@@ -4,7 +4,7 @@
 AAutoSiegeHUD::AAutoSiegeHUD()
 {
 	static ConstructorHelpers::FClassFinder<UUserWidget> ConnectedPlayersObj(TEXT
-	("/Game/UI/ConnectedPlayers_UI"));
+	("WidgetBlueprint'/Game/UI/AutoSiegeUserWidget'"));
 
 	HUDWidgetClass = ConnectedPlayersObj.Class;
 }

@@ -1,4 +1,7 @@
 #include "AutoSiegePlayerController.h"
+#include "AutoSiegeHUD.h"
+#include "Components/TextBlock.h"
+#include "AutoSiegeUserWidget.h"
 
 AAutoSiegePlayerController::AAutoSiegePlayerController()
 {
@@ -26,12 +29,15 @@ void AAutoSiegePlayerController::BeginPlay()
 
 }
 
+bool AAutoSiegePlayerController::Server_PlayerReady_Validate()
+{
+	return true;
+}
 
-
-
-
-
-
+void AAutoSiegePlayerController::Server_PlayerReady_Implementation()
+{
+	GameState_Ref->NumberOfReadyPlayers++;
+}
 
 
 

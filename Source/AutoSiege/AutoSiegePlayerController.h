@@ -32,6 +32,10 @@ public:
 	bool enableInHandMovementRotation;
 	void SetCardLocation( /*3DCard*/ AActor card, FVector holdLocation, FRotator rotation);
 
+	UFUNCTION(BlueprintCallable, Server, unreliable, WithValidation)
+	void Server_PlayerReady();
+
+
 private:
 	FClientPostLoginEvent ClientPostLoginEvent;
 	ABoard* PlayerBoard;

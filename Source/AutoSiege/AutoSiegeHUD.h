@@ -16,10 +16,11 @@ public:
 	//virtual void DrawHUD() override;
 	virtual void BeginPlay() override;
 	
-private:
+//private:
 	UPROPERTY(EditAnywhere, Category = "Network")
 	TSubclassOf<class UUserWidget> HUDWidgetClass;
 
 	UPROPERTY(EditAnywhere, Category = "Network")
 	class UUserWidget* CurrentWidget;
+
 };
