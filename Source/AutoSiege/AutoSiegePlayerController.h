@@ -35,6 +35,8 @@ public:
 	UFUNCTION(BlueprintCallable, Server, unreliable, WithValidation)
 	void Server_PlayerReady();
 
+	void InitHeroSelect();
+
 
 private:
 	FClientPostLoginEvent ClientPostLoginEvent;

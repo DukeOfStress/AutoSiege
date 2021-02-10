@@ -6,6 +6,8 @@
 AAutoSiegePlayerController::AAutoSiegePlayerController()
 {
 	bAutoManageActiveCameraTarget = false;
+	bEnableClickEvents = true;
+	bShowMouseCursor = true;
 }
 
 void AAutoSiegePlayerController::BeginPlay()
@@ -14,6 +16,7 @@ void AAutoSiegePlayerController::BeginPlay()
 	Super::BeginPlay();
 
 	GameState_Ref = GetWorld() != NULL ? GetWorld()->GetGameState<AAutoSiegeGameStateBase>() : NULL;
+	PlayerState_Ref = GetPlayerState<AAutoSiegePlayerState>();
 	
 	if ( !HasAuthority() )
 	{
@@ -39,7 +42,30 @@ void AAutoSiegePlayerController::Server_PlayerReady_Implementation()
 	GameState_Ref->NumberOfReadyPlayers++;
 }
 
+void AAutoSiegePlayerController::InitHeroSelect()
+{
+	if (!HasAuthority() && PlayerState_Ref != NULL)
+	{
+		UObject* SpawnActor = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("Blueprint'/Game/Portrait.Portrait'")));
+		UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnActor);
+		if (!SpawnActor) return;
 
+		UClass* SpawnClass = SpawnActor->StaticClass();
+		if (SpawnActor == NULL) return;
+
+		UWorld* World = GetWorld();
+
+		for (int i = 0; i < PlayerState_Ref->AvailableHeroes.Num(); i++)
+		{
+			FVector Location(400.0f * i - 400.f, 0.0f, 0.0f);
+			FRotator Rotation(0.0f, 0.0f, 0.0f);
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+			World->SpawnActor<AActor>(GeneratedBP->GeneratedClass, Location, Rotation, SpawnParams);
+		}
+	}
+}
 
 
 

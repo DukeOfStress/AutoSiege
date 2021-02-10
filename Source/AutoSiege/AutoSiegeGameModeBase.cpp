@@ -67,11 +67,9 @@ void AAutoSiegeGameModeBase::PostLogin(APlayerController* NewPlayer)
 		PlayerStateArray.AddUnique(ps);
 
 		ps->PlayerIndex = PlayerControllerArray.Num() - 1;
-		
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("GameMode::PostLogin - %d"), ps->PlayerIndex));
 
 		// Dish out heroes from the pool into the PlayerState
-		for (int i = GameState_Ref->NumberOfConnectedPlayers; i < GameState_Ref->TotalNumberOfPlayers; i++)
+		for (int i = ps->PlayerIndex * 3; i < (ps->PlayerIndex * 3) + 3; i++)
 		{
 			ps->AvailableHeroes.Add(HeroPool[i]);
 		}
@@ -81,8 +79,6 @@ void AAutoSiegeGameModeBase::PostLogin(APlayerController* NewPlayer)
 		{
 			GameState_Ref->CurrentStage = GameStage::HeroSelect;
 		}
-
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("GameMode::PostLogin::PlayerCount - %d"), GameState_Ref->NumberOfConnectedPlayers));
 
 	}
 

@@ -17,7 +17,14 @@ public:
 	UPROPERTY(Replicated)
 	int PlayerIndex;
 
+	UPROPERTY(ReplicatedUsing = OnRep_AvailableHeroes)
 	TArray<FName> AvailableHeroes;
+
+	UPROPERTY(Replicated)
 	FName ChosenHero;
+
+private:
+	UFUNCTION()
+	void OnRep_AvailableHeroes();
 
 };
