@@ -19,16 +19,16 @@ class AUTOSIEGE_API ABoard : public AActor
 public:	
 	ABoard();
 
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* StaticMeshComponent;
+	//UPROPERTY(VisibleAnywhere)
+	//UStaticMeshComponent* StaticMeshComponent;
 
-	UPROPERTY(VisibleAnywhere)
-	UCameraComponent* CameraComponent;
+	//UPROPERTY(VisibleAnywhere)
+	//UCameraComponent* CameraComponent;
 
-	UPROPERTY(VisibleAnywhere)
-	USkyLightComponent* SkyLightComponent;
+	//UPROPERTY(VisibleAnywhere)
+	//USkyLightComponent* SkyLightComponent;
 
-	UPROPERTY(VisibleAnywhere)
-	UDirectionalLightComponent* DirectionalLightComponent;
+	//UPROPERTY(VisibleAnywhere)
+	//UDirectionalLightComponent* DirectionalLightComponent;
 
 };

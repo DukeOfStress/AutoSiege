@@ -23,11 +23,20 @@ void AAutoSiegePlayerController::BeginPlay()
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Client - PlayerController::BeginPlay"));
 
+		UObject* SpawnActor = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("Blueprint'/Game/Board.Board'")));
+		UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnActor);
+		if (!SpawnActor) return;
+
+		UClass* SpawnClass = SpawnActor->StaticClass();
+		if (SpawnActor == NULL) return;
+
 		FVector Location(0.0f, 0.0f, 0.0f);
 		FRotator Rotation(0.0f, 0.0f, 0.0f);
-		FActorSpawnParameters SpawnInfo;
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = this;
+		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-		PlayerBoard = GetWorld()->SpawnActor<ABoard>(Location, Rotation, SpawnInfo);
+		PlayerBoard = GetWorld()->SpawnActor<ABoard>(GeneratedBP->GeneratedClass, Location, Rotation, SpawnParams);
 		SetViewTarget(PlayerBoard);
 	}
 
