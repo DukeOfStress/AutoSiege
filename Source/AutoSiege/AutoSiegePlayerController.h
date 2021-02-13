@@ -6,6 +6,7 @@
 #include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerState.h"
 #include "Board.h"
+#include "Portrait.h"
 
 #include "AutoSiegePlayerController.generated.h"
 
@@ -25,8 +26,16 @@ public:
 	AAutoSiegeGameStateBase* GameState_Ref;
 	AAutoSiegePlayerState* PlayerState_Ref;
 
-	UFUNCTION(BlueprintCallable, Server, unreliable, WithValidation)
-	void Server_PlayerReady();
+	TArray<APortrait*> HeroSelectPortraits;
+	APortrait* HeroPortrait;
+
+	bool PlayerReadyCheck[8] = { false };
+
+	UFUNCTION(BlueprintCallable)
+	void SelectHero(APortrait* hero);
+
+	UFUNCTION(Server, unreliable, WithValidation)
+	void Server_PlayerReady(FName HeroName);
 
 private:
 	ABoard* PlayerBoard;

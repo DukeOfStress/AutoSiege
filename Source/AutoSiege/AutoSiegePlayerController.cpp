@@ -46,12 +46,36 @@ void AAutoSiegePlayerController::BeginPlay()
 
 }
 
-bool AAutoSiegePlayerController::Server_PlayerReady_Validate()
+bool AAutoSiegePlayerController::Server_PlayerReady_Validate(FName HeroName)
 {
 	return true;
 }
 
-void AAutoSiegePlayerController::Server_PlayerReady_Implementation()
+void AAutoSiegePlayerController::Server_PlayerReady_Implementation(FName HeroName)
 {
+	if (PlayerReadyCheck[PlayerState_Ref->PlayerIndex])
+		return;
+
+	PlayerReadyCheck[PlayerState_Ref->PlayerIndex] = true;
 	GameState_Ref->NumberOfReadyPlayers++;
+
+	// TODO: Have to track the selected Hero in GameState or PlayerState on Server!
+}
+
+void AAutoSiegePlayerController::SelectHero(APortrait* hero)
+{
+	for (int i = 0; i < HeroSelectPortraits.Num(); i++)
+	{
+		if (HeroSelectPortraits[i] == hero)
+		{
+			HeroPortrait = hero;
+			continue;
+		}
+
+		GetWorld()->DestroyActor(HeroSelectPortraits[i]);
+	}
+
+	HeroSelectPortraits.Reset();
+
+	Server_PlayerReady(hero->Name);
 }

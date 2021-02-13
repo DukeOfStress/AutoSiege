@@ -19,8 +19,9 @@ void AAutoSiegePlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>
 
 void AAutoSiegePlayerState::OnRep_AvailableHeroes()
 {
+	AAutoSiegePlayerController* playerController = GetWorld()->GetFirstPlayerController<AAutoSiegePlayerController>();
 
-	if (GetOwner() != GetWorld()->GetFirstPlayerController())
+	if (GetOwner() != playerController)
 		return;
 	
 	UObject* SpawnActor = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("Blueprint'/Game/Portrait.Portrait'")));
@@ -42,7 +43,8 @@ void AAutoSiegePlayerState::OnRep_AvailableHeroes()
 		SpawnParams.Owner = this;
 		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		APortrait* portrait = World->SpawnActor<APortrait>(GeneratedBP->GeneratedClass, Location, Rotation, SpawnParams);
-		portrait->ReceiveOnUpdatePortrait(AvailableHeroes[i]);
+		portrait->OnUpdatePortrait(AvailableHeroes[i]);
+		playerController->HeroSelectPortraits.Add(portrait);
 	}
 
 }
