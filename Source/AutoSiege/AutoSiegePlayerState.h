@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerState.h"
 #include "Net/UnrealNetwork.h"
+
 #include "AutoSiegePlayerState.generated.h"
 
 UCLASS()

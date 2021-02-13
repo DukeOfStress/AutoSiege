@@ -1,10 +1,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameModeBase.h"
-
 #include "Engine/DataTable.h"
 #include "Engine/EngineTypes.h"
+#include "GameFramework/GameModeBase.h"
 
 #include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerController.h"
@@ -39,7 +38,6 @@ struct FCardData : public FTableRowBase
 	FName Name;
 };
 
-
 UCLASS()
 class AUTOSIEGE_API AAutoSiegeGameModeBase : public AGameModeBase
 {
@@ -54,10 +52,7 @@ protected:
 	virtual void PostLogin(APlayerController* NewPlayer) override;
 
 public:
-	FTimerHandle MemberTimerHandle;
-
-
-	//static const float SHOP_ROUND_TIME_SECONDS = 120.f;
+	FTimerHandle TimerHandle;
 
 	TArray<AAutoSiegePlayerController*> PlayerControllerArray;
 	TArray<AAutoSiegePlayerState*> PlayerStateArray;
@@ -67,6 +62,6 @@ private:
 	UDataTable* HeroDataTable;
 	TArray<FName> HeroPool;
 
-	void RepeatingFunction();
+	void TimerCountdown();
 
 };

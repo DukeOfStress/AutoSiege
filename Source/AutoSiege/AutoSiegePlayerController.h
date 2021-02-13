@@ -1,12 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameFramework/PlayerController.h"
 
 #include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerState.h"
 #include "Board.h"
-#include "Camera/CameraComponent.h"
-#include "GameFramework/PlayerController.h"
 
 #include "AutoSiegePlayerController.generated.h"
 
@@ -26,20 +25,10 @@ public:
 	AAutoSiegeGameStateBase* GameState_Ref;
 	AAutoSiegePlayerState* PlayerState_Ref;
 
-	DECLARE_EVENT(AAutoSiegePlayerController, FClientPostLoginEvent)
-	FClientPostLoginEvent& OnClientPostLoginEvent() { return ClientPostLoginEvent; };
-
-	bool enableInHandMovementRotation;
-	void SetCardLocation( /*3DCard*/ AActor card, FVector holdLocation, FRotator rotation);
-
 	UFUNCTION(BlueprintCallable, Server, unreliable, WithValidation)
 	void Server_PlayerReady();
 
-	void InitHeroSelect();
-
-
 private:
-	FClientPostLoginEvent ClientPostLoginEvent;
 	ABoard* PlayerBoard;
 
 };

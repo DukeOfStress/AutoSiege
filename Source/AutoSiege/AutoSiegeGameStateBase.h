@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameStateBase.h"
+
 #include "AutoSiegeGameStateBase.generated.h"
 
 UENUM()
@@ -20,9 +21,6 @@ public:
 	UPROPERTY(ReplicatedUsing = OnRep_RoundTimer)
 	float RoundTimer = 60.f;
 
-	//UPROPERTY(Replicated)
-	//int PlayerHealth [8];
-
 	int NumberOfConnectedPlayers = 0;
 
 	UPROPERTY(ReplicatedUsing = OnRep_NumberOfReadyPlayers)
@@ -31,8 +29,6 @@ public:
 	const int TotalNumberOfPlayers = 3;
 
 	GameStage CurrentStage;
-
-	// Current matchups
 
 private:
 	UFUNCTION()

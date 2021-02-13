@@ -1,8 +1,9 @@
 #include "AutoSiegeGameModeBase.h"
+
 #include "AutoSiegeHUD.h"
 
 AAutoSiegeGameModeBase::AAutoSiegeGameModeBase(const class FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+	: Super(ObjectInitializer)
 {
 
 	GameStateClass = AAutoSiegeGameStateBase::StaticClass();
@@ -25,8 +26,6 @@ void AAutoSiegeGameModeBase::BeginPlay()
 
 	Super::BeginPlay();
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("GameMode::BeginPlay"));
-
 	GameState_Ref = GetGameState<AAutoSiegeGameStateBase>();
 	GameState_Ref->CurrentStage = GameStage::PlayerJoin;
 
@@ -40,19 +39,8 @@ void AAutoSiegeGameModeBase::BeginPlay()
 		HeroPool[j] = temp;
 	}
 
-	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AAutoSiegeGameModeBase::RepeatingFunction, 1.0f, true, 2.0f);
+	GetWorldTimerManager().SetTimer(TimerHandle, this, &AAutoSiegeGameModeBase::TimerCountdown, 1.0f, true, 2.0f);
 
-}
-
-// TODO: Place this somewhere else probably. This is just for testing.
-void AAutoSiegeGameModeBase::RepeatingFunction()
-{
-	GameState_Ref->RoundTimer--;
-
-	if (GameState_Ref->RoundTimer <= 0.f)
-	{
-		GetWorldTimerManager().ClearTimer(MemberTimerHandle);
-	}
 }
 
 void AAutoSiegeGameModeBase::PostLogin(APlayerController* NewPlayer)
@@ -82,4 +70,14 @@ void AAutoSiegeGameModeBase::PostLogin(APlayerController* NewPlayer)
 
 	}
 
+}
+
+void AAutoSiegeGameModeBase::TimerCountdown()
+{
+	GameState_Ref->RoundTimer--;
+
+	if (GameState_Ref->RoundTimer <= 0.f)
+	{
+		GetWorldTimerManager().ClearTimer(TimerHandle);
+	}
 }

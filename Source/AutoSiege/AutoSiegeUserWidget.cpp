@@ -4,40 +4,46 @@
 
 void UAutoSiegeUserWidget::NativeConstruct()
 {
+
 	Super::NativeConstruct();
 
 	UpdatePlayersReady();
+
 }
 
 void UAutoSiegeUserWidget::UpdateRoundTimer()
 {
-	if (RoundTimer_Text)
-	{
-		AAutoSiegeGameStateBase* gs = (AAutoSiegeGameStateBase*)(GetWorld()->GetGameState());
 
-		FFormatOrderedArguments Args;
-		Args.Add(gs->RoundTimer);
+	if (!RoundTimer_Text)
+		return;
+	
+	AAutoSiegeGameStateBase* gs = (AAutoSiegeGameStateBase*)(GetWorld()->GetGameState());
 
-		RoundTimer_Text->SetText(FText::Format(
-			NSLOCTEXT("AutoSiege", "RoundTimer", "{0}"),
-			Args
-		));
-	}
+	FFormatOrderedArguments Args;
+	Args.Add(gs->RoundTimer);
+
+	RoundTimer_Text->SetText(FText::Format(
+		NSLOCTEXT("AutoSiege", "RoundTimer", "{0}"),
+		Args
+	));
+
 }
 
 void UAutoSiegeUserWidget::UpdatePlayersReady()
 {
-	if (PlayersReady_Text)
-	{
-		AAutoSiegeGameStateBase* gs = (AAutoSiegeGameStateBase*)(GetWorld()->GetGameState());
 
-		FFormatOrderedArguments Args;
-		Args.Add(gs->NumberOfReadyPlayers);
-		Args.Add(gs->TotalNumberOfPlayers);
+	if (!PlayersReady_Text)
+		return;
+	
+	AAutoSiegeGameStateBase* gs = (AAutoSiegeGameStateBase*)(GetWorld()->GetGameState());
 
-		PlayersReady_Text->SetText(FText::Format(
-			NSLOCTEXT("AutoSiege", "NumberOfReadyPlayers", "{0}/{1} Players Ready"),
-			Args
-		));
-	}
+	FFormatOrderedArguments Args;
+	Args.Add(gs->NumberOfReadyPlayers);
+	Args.Add(gs->TotalNumberOfPlayers);
+
+	PlayersReady_Text->SetText(FText::Format(
+		NSLOCTEXT("AutoSiege", "NumberOfReadyPlayers", "{0}/{1} Players Ready"),
+		Args
+	));
+
 }

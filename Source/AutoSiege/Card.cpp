@@ -3,5 +3,4 @@
 ACard::ACard()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
 }
