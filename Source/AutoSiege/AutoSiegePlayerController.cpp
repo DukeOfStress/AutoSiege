@@ -44,7 +44,7 @@ void AAutoSiegePlayerController::Server_PlayerReady_Implementation()
 
 void AAutoSiegePlayerController::InitHeroSelect()
 {
-	if (!HasAuthority() && PlayerState_Ref != NULL)
+	if (!HasAuthority() && PlayerState_Ref != NULL && PlayerState_Ref->AvailableHeroes.Num() == 3)
 	{
 		UObject* SpawnActor = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("Blueprint'/Game/Portrait.Portrait'")));
 		UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnActor);
@@ -57,13 +57,15 @@ void AAutoSiegePlayerController::InitHeroSelect()
 
 		for (int i = 0; i < PlayerState_Ref->AvailableHeroes.Num(); i++)
 		{
-			FVector Location(400.0f * i - 400.f, 0.0f, 0.0f);
+			FVector Location(400.0f * i - 400.f, 0.0f, 1000.0f);
 			FRotator Rotation(0.0f, 0.0f, 0.0f);
 			FActorSpawnParameters SpawnParams;
 			SpawnParams.Owner = this;
 			SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 			World->SpawnActor<AActor>(GeneratedBP->GeneratedClass, Location, Rotation, SpawnParams);
 		}
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("InitHeroSelect - %d"), PlayerState_Ref->PlayerIndex));
 	}
 }
 
