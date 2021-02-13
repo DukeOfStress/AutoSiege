@@ -31,7 +31,7 @@ struct FHero : public FTableRowBase
 };
 
 USTRUCT(BlueprintType)
-struct FCard : public FTableRowBase
+struct FCardData : public FTableRowBase
 {
 	GENERATED_BODY()
 

@@ -12,4 +12,9 @@ class AUTOSIEGE_API APortrait : public AActor
 public:	
 	APortrait();
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Portrait", meta = (DisplayName = "OnUpdatePortrait"))
+	void ReceiveOnUpdatePortrait();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Portrait", meta = (DisplayName = "OnUpdateHealth"))
+	void ReceiveOnUpdateHealth();
 };
