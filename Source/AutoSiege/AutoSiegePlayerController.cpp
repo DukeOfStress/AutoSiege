@@ -2,6 +2,7 @@
 #include "AutoSiegeHUD.h"
 #include "Components/TextBlock.h"
 #include "AutoSiegeUserWidget.h"
+#include "Portrait.h"
 
 AAutoSiegePlayerController::AAutoSiegePlayerController()
 {
@@ -62,7 +63,8 @@ void AAutoSiegePlayerController::InitHeroSelect()
 			FActorSpawnParameters SpawnParams;
 			SpawnParams.Owner = this;
 			SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-			World->SpawnActor<AActor>(GeneratedBP->GeneratedClass, Location, Rotation, SpawnParams);
+			APortrait* portrait = World->SpawnActor<APortrait>(GeneratedBP->GeneratedClass, Location, Rotation, SpawnParams);
+			portrait->ReceiveOnUpdatePortrait(PlayerState_Ref->AvailableHeroes[i]);
 		}
 
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("InitHeroSelect - %d"), PlayerState_Ref->PlayerIndex));

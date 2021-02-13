@@ -13,7 +13,7 @@ public:
 	APortrait();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Portrait", meta = (DisplayName = "OnUpdatePortrait"))
-	void ReceiveOnUpdatePortrait();
+	void ReceiveOnUpdatePortrait(FName HeroName);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Portrait", meta = (DisplayName = "OnUpdateHealth"))
 	void ReceiveOnUpdateHealth();
