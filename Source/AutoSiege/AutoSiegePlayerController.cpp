@@ -131,3 +131,88 @@ void AAutoSiegePlayerController::Server_FreezeShop_Implementation()
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
 	}
 }
+
+bool AAutoSiegePlayerController::Server_BuyCard_Validate()
+{
+	return true;
+}
+
+void AAutoSiegePlayerController::Server_BuyCard_Implementation()
+{
+	if (HasAuthority())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Server!");
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
+	}
+}
+
+bool AAutoSiegePlayerController::Server_SellCard_Validate()
+{
+	return true;
+}
+
+void AAutoSiegePlayerController::Server_SellCard_Implementation()
+{
+	if (HasAuthority())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Server!");
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
+	}
+}
+
+bool AAutoSiegePlayerController::Server_PlayCard_Validate()
+{
+	return true;
+}
+
+void AAutoSiegePlayerController::Server_PlayCard_Implementation()
+{
+	if (HasAuthority())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Server!");
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
+	}
+}
+
+bool AAutoSiegePlayerController::Server_ReorderCards_Validate()
+{
+	return true;
+}
+
+void AAutoSiegePlayerController::Server_ReorderCards_Implementation()
+{
+	if (HasAuthority())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Server!");
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
+	}
+}
+
+bool AAutoSiegePlayerController::Server_CastHeroAbility_Validate()
+{
+	return true;
+}
+
+void AAutoSiegePlayerController::Server_CastHeroAbility_Implementation()
+{
+	if (HasAuthority())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Server!");
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
+	}
+}

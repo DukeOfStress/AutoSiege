@@ -46,6 +46,21 @@ public:
 	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
 	void Server_FreezeShop();
 
+	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	void Server_BuyCard();
+
+	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	void Server_SellCard();
+
+	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	void Server_PlayCard();
+
+	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	void Server_ReorderCards();
+
+	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	void Server_CastHeroAbility();
+
 	UPROPERTY(BlueprintReadOnly)
 	ABoard* PlayerBoard;
 
@@ -53,16 +68,6 @@ public:
 
 
 /*
-
-Player Actions:
- - Freeze shop
- - Upgrade shop
- - Re-roll shop
- - Buy card
- - Sell card
- - Play card
- - reorder they lineup
- - case their hero ability
 
  Player Data:
   - Cards in lineup
