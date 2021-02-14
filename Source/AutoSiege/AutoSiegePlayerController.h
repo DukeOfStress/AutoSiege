@@ -37,7 +37,7 @@ public:
 	UFUNCTION(Server, unreliable, WithValidation)
 	void Server_PlayerReady(FName HeroName);
 
-private:
+	UPROPERTY(BlueprintReadOnly)
 	ABoard* PlayerBoard;
 
 };
