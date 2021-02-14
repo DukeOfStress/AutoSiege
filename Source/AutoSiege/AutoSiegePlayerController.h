@@ -38,10 +38,13 @@ public:
 	void Server_PlayerReady(FName HeroName);
 
 	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	void Server_UpgradeShop();
+
+	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
 	void Server_RefreshShop();
 
 	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
-	void Server_UpgradeShop();
+	void Server_FreezeShop();
 
 	UPROPERTY(BlueprintReadOnly)
 	ABoard* PlayerBoard;

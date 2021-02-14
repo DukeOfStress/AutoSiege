@@ -114,3 +114,20 @@ void AAutoSiegePlayerController::Server_UpgradeShop_Implementation()
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
 	}
 }
+
+bool AAutoSiegePlayerController::Server_FreezeShop_Validate()
+{
+	return true;
+}
+
+void AAutoSiegePlayerController::Server_FreezeShop_Implementation()
+{
+	if (HasAuthority())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Server!");
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
+	}
+}
