@@ -46,22 +46,6 @@ void AAutoSiegePlayerController::BeginPlay()
 
 }
 
-bool AAutoSiegePlayerController::Server_PlayerReady_Validate(FName HeroName)
-{
-	return true;
-}
-
-void AAutoSiegePlayerController::Server_PlayerReady_Implementation(FName HeroName)
-{
-	if (PlayerReadyCheck[PlayerState_Ref->PlayerIndex])
-		return;
-
-	PlayerReadyCheck[PlayerState_Ref->PlayerIndex] = true;
-	GameState_Ref->NumberOfReadyPlayers++;
-
-	// TODO: Have to track the selected Hero in GameState or PlayerState on Server!
-}
-
 void AAutoSiegePlayerController::SelectHero(APortrait* hero)
 {
 	for (int i = 0; i < HeroSelectPortraits.Num(); i++)
@@ -78,4 +62,55 @@ void AAutoSiegePlayerController::SelectHero(APortrait* hero)
 	HeroSelectPortraits.Reset();
 
 	Server_PlayerReady(hero->Name);
+}
+
+
+bool AAutoSiegePlayerController::Server_PlayerReady_Validate(FName HeroName)
+{
+	return true;
+}
+
+void AAutoSiegePlayerController::Server_PlayerReady_Implementation(FName HeroName)
+{
+	if (PlayerReadyCheck[PlayerState_Ref->PlayerIndex])
+		return;
+
+	PlayerReadyCheck[PlayerState_Ref->PlayerIndex] = true;
+	GameState_Ref->NumberOfReadyPlayers++;
+
+	// TODO: Have to track the selected Hero in GameState or PlayerState on Server!
+}
+
+bool AAutoSiegePlayerController::Server_RefreshShop_Validate()
+{
+	return true;
+}
+
+void AAutoSiegePlayerController::Server_RefreshShop_Implementation()
+{
+	if (HasAuthority())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Server!");
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
+	}
+}
+
+bool AAutoSiegePlayerController::Server_UpgradeShop_Validate()
+{
+	return true;
+}
+
+void AAutoSiegePlayerController::Server_UpgradeShop_Implementation()
+{
+	if (HasAuthority())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Server!");
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
+	}
 }

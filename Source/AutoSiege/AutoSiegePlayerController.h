@@ -33,9 +33,15 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SelectHero(APortrait* hero);
-
-	UFUNCTION(Server, unreliable, WithValidation)
+	
+	UFUNCTION(Server, Reliable, WithValidation)
 	void Server_PlayerReady(FName HeroName);
+
+	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	void Server_RefreshShop();
+
+	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	void Server_UpgradeShop();
 
 	UPROPERTY(BlueprintReadOnly)
 	ABoard* PlayerBoard;

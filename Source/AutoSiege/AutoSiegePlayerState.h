@@ -21,11 +21,17 @@ public:
 	UPROPERTY(ReplicatedUsing = OnRep_AvailableHeroes)
 	TArray<FName> AvailableHeroes;
 
+	UPROPERTY(ReplicatedUsing = OnRep_ShopCards)
+	TArray<FName> ShopCards;
+
 	UPROPERTY(Replicated)
 	FName ChosenHero;
 
 private:
 	UFUNCTION()
 	void OnRep_AvailableHeroes();
+
+	UFUNCTION()
+	void OnRep_ShopCards();
 
 };
