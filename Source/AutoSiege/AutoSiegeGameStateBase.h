@@ -9,7 +9,9 @@ UENUM()
 enum GameStage
 {
 	PlayerJoin,
-	HeroSelect
+	HeroSelect,
+	Shop,
+	Battle
 };
 
 UCLASS()
@@ -28,7 +30,11 @@ public:
 
 	const int TotalNumberOfPlayers = 3;
 
-	GameStage CurrentStage;
+	UPROPERTY(Replicated)
+	FName Heroes[8];
+
+	UPROPERTY(ReplicatedUsing = OnRep_CurrentStage)
+	TEnumAsByte<GameStage> CurrentStage;
 
 private:
 	UFUNCTION()
@@ -36,5 +42,8 @@ private:
 
 	UFUNCTION()
 	void OnRep_NumberOfReadyPlayers();
+
+	UFUNCTION()
+	void OnRep_CurrentStage();
 
 };

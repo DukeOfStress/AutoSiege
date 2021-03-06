@@ -78,7 +78,15 @@ void AAutoSiegePlayerController::Server_PlayerReady_Implementation(FName HeroNam
 	PlayerReadyCheck[PlayerState_Ref->PlayerIndex] = true;
 	GameState_Ref->NumberOfReadyPlayers++;
 
-	// TODO: Have to track the selected Hero in GameState or PlayerState on Server!
+	GameState_Ref->Heroes[PlayerState_Ref->PlayerIndex] = HeroName;
+
+	if (GameState_Ref->NumberOfReadyPlayers == GameState_Ref->TotalNumberOfPlayers)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "All players are ready!");
+	
+		// TODO: Trigger next game state [SHOP]
+		GameState_Ref->CurrentStage = GameStage::Shop;
+	}
 }
 
 bool AAutoSiegePlayerController::Server_RefreshShop_Validate()
