@@ -17,6 +17,12 @@ AAutoSiegeGameModeBase::AAutoSiegeGameModeBase(const class FObjectInitializer& O
 		HeroDataTable = HeroDataObject.Object;
 	}
 
+	static ConstructorHelpers::FObjectFinder<UDataTable> CardDataObject(TEXT("DataTable'/Game/Data/CardData_DataTable.CardData_DataTable'"));
+	if (CardDataObject.Succeeded())
+	{
+		CardDataTable = CardDataObject.Object;
+	}
+
 	bPauseable = false;
 
 }
@@ -37,6 +43,12 @@ void AAutoSiegeGameModeBase::BeginPlay()
 		FName temp = HeroPool[i];
 		HeroPool[i] = HeroPool[j];
 		HeroPool[j] = temp;
+	}
+
+	TArray<FName> CardIDs = CardDataTable->GetRowNames();
+	for (int32 i = 0; i < CardIDs.Num(); i++)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Card found!");
 	}
 
 	GetWorldTimerManager().SetTimer(TimerHandle, this, &AAutoSiegeGameModeBase::TimerCountdown, 1.0f, true, 2.0f);

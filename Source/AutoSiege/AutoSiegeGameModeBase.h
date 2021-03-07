@@ -62,6 +62,9 @@ private:
 	UDataTable* HeroDataTable;
 	TArray<FName> HeroPool;
 
+	UDataTable* CardDataTable;
+	TArray<TArray<FName>> CardPool;
+
 	void TimerCountdown();
 
 };
