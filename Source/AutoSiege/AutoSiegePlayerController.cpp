@@ -2,8 +2,7 @@
 
 #include "Components/TextBlock.h"
 
-#include "AutoSiegeHUD.h"
-#include "AutoSiegeUserWidget.h"
+#include "AutoSiegeGameModeBase.h"
 #include "Portrait.h"
 
 AAutoSiegePlayerController::AAutoSiegePlayerController()
@@ -20,29 +19,9 @@ void AAutoSiegePlayerController::BeginPlay()
 
 	Super::BeginPlay();
 
-	GameState_Ref = GetWorld() != NULL ? GetWorld()->GetGameState<AAutoSiegeGameStateBase>() : NULL;
+	GameMode_Ref = GetWorld()->GetAuthGameMode<AAutoSiegeGameModeBase>();
+	GameState_Ref = GetWorld()->GetGameState<AAutoSiegeGameStateBase>();
 	PlayerState_Ref = GetPlayerState<AAutoSiegePlayerState>();
-
-	if ( HasAuthority() )
-		return;
-	
-	UObject* SpawnActor = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("Blueprint'/Game/Board.Board'")));
-	UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnActor);
-	if ( !SpawnActor )
-		return;
-
-	UClass* SpawnClass = SpawnActor->StaticClass();
-	if ( SpawnActor == NULL )
-		return;
-
-	FVector Location(0.0f, 0.0f, 0.0f);
-	FRotator Rotation(0.0f, 0.0f, 0.0f);
-	FActorSpawnParameters SpawnParams;
-	SpawnParams.Owner = this;
-	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-
-	PlayerBoard = GetWorld()->SpawnActor<ABoard>(GeneratedBP->GeneratedClass, Location, Rotation, SpawnParams);
-	SetViewTarget(PlayerBoard);
 
 }
 
@@ -64,34 +43,17 @@ void AAutoSiegePlayerController::SelectHero(APortrait* hero)
 	Server_PlayerReady(hero->Name);
 }
 
-
-bool AAutoSiegePlayerController::Server_PlayerReady_Validate(FName HeroName)
-{
-	return true;
-}
-
 void AAutoSiegePlayerController::Server_PlayerReady_Implementation(FName HeroName)
 {
-	if (PlayerReadyCheck[PlayerState_Ref->PlayerIndex])
+	if (IsPlayerReady)
 		return;
 
-	PlayerReadyCheck[PlayerState_Ref->PlayerIndex] = true;
-	GameState_Ref->NumberOfReadyPlayers++;
+	IsPlayerReady = true;
 
+	GameState_Ref->NumberOfReadyPlayers++;
 	GameState_Ref->Heroes[PlayerState_Ref->PlayerIndex] = HeroName;
 
-	if (GameState_Ref->NumberOfReadyPlayers == GameState_Ref->TotalNumberOfPlayers)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "All players are ready!");
-	
-		// TODO: Trigger next game state [SHOP]
-		GameState_Ref->CurrentStage = GameStage::Shop;
-	}
-}
-
-bool AAutoSiegePlayerController::Server_RefreshShop_Validate()
-{
-	return true;
+	GameMode_Ref->CheckAllPlayersReady();
 }
 
 void AAutoSiegePlayerController::Server_RefreshShop_Implementation()
@@ -106,26 +68,37 @@ void AAutoSiegePlayerController::Server_RefreshShop_Implementation()
 	}
 }
 
-bool AAutoSiegePlayerController::Server_UpgradeShop_Validate()
-{
-	return true;
-}
-
 void AAutoSiegePlayerController::Server_UpgradeShop_Implementation()
 {
-	if (HasAuthority())
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Server!");
-	}
-	else
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
-	}
-}
+	if (!HasAuthority())
+		return;
 
-bool AAutoSiegePlayerController::Server_FreezeShop_Validate()
-{
-	return true;
+	if (PlayerState_Ref->Gold >= PlayerState_Ref->ShopUpgradePrice)
+	{
+		PlayerState_Ref->Gold -= PlayerState_Ref->ShopUpgradePrice;
+		PlayerState_Ref->ShopTier++;
+
+		switch (PlayerState_Ref->ShopTier)
+		{
+		case 2:
+			PlayerState_Ref->ShopUpgradePrice = 7;
+			break;
+		case 3:
+			PlayerState_Ref->ShopUpgradePrice = 8;
+			break;
+		case 4:
+			PlayerState_Ref->ShopUpgradePrice = 9;
+			break;
+		case 5:
+			PlayerState_Ref->ShopUpgradePrice = 10;
+			break;
+		}
+
+		return;
+	}
+
+	// TODO: Error message "Cannot afford to upgrade shop!"
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Cannot afford to upgrade shop!");
 }
 
 void AAutoSiegePlayerController::Server_FreezeShop_Implementation()
@@ -140,10 +113,6 @@ void AAutoSiegePlayerController::Server_FreezeShop_Implementation()
 	}
 }
 
-bool AAutoSiegePlayerController::Server_BuyCard_Validate()
-{
-	return true;
-}
 
 void AAutoSiegePlayerController::Server_BuyCard_Implementation()
 {
@@ -157,10 +126,6 @@ void AAutoSiegePlayerController::Server_BuyCard_Implementation()
 	}
 }
 
-bool AAutoSiegePlayerController::Server_SellCard_Validate()
-{
-	return true;
-}
 
 void AAutoSiegePlayerController::Server_SellCard_Implementation()
 {
@@ -172,11 +137,6 @@ void AAutoSiegePlayerController::Server_SellCard_Implementation()
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
 	}
-}
-
-bool AAutoSiegePlayerController::Server_PlayCard_Validate()
-{
-	return true;
 }
 
 void AAutoSiegePlayerController::Server_PlayCard_Implementation()
@@ -191,11 +151,6 @@ void AAutoSiegePlayerController::Server_PlayCard_Implementation()
 	}
 }
 
-bool AAutoSiegePlayerController::Server_ReorderCards_Validate()
-{
-	return true;
-}
-
 void AAutoSiegePlayerController::Server_ReorderCards_Implementation()
 {
 	if (HasAuthority())
@@ -208,19 +163,32 @@ void AAutoSiegePlayerController::Server_ReorderCards_Implementation()
 	}
 }
 
-bool AAutoSiegePlayerController::Server_CastHeroAbility_Validate()
-{
-	return true;
-}
-
 void AAutoSiegePlayerController::Server_CastHeroAbility_Implementation()
 {
+	if (!HasAuthority())
+		return;
+
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Server: Cast Hero!");
+	// Do something
+	Client_DoSomething(5);
+}
+
+void AAutoSiegePlayerController::Client_DoSomething_Implementation(int32 i)
+{
 	if (HasAuthority())
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Server!");
-	}
-	else
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Client!");
-	}
+		return;
+
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, "Client: Do Something!");
+	
+	AAutoSiegeHUD* hud = Cast<AAutoSiegeHUD>(GetWorld()->GetFirstPlayerController()->GetHUD());
+	UAutoSiegeUserWidget* uw = (UAutoSiegeUserWidget*)hud->CurrentWidget;
+	uw->UpdateShopUpgradeCost(i);
+}
+
+void AAutoSiegePlayerController::Client_PresentHeroes_Implementation(const TArray<FName>& Heroes)
+{
+	if (HasAuthority())
+		return;
+	
+	PresentHeroes(Heroes);
 }

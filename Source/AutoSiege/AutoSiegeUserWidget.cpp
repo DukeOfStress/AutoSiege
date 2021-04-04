@@ -47,3 +47,19 @@ void UAutoSiegeUserWidget::UpdatePlayersReady()
 	));
 
 }
+
+void UAutoSiegeUserWidget::UpdateShopUpgradeCost(int32 ShopUpgradeCost)
+{
+
+	if (!ShopUpgradeCost_Text)
+		return;
+
+	FFormatOrderedArguments Args;
+	Args.Add(ShopUpgradeCost);
+
+	ShopUpgradeCost_Text->SetText(FText::Format(
+		NSLOCTEXT("AutoSiege", "ShopUpgradeCost", "{0}"),
+		Args
+	));
+	
+}

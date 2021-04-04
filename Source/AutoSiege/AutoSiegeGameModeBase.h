@@ -52,18 +52,23 @@ protected:
 	virtual void PostLogin(APlayerController* NewPlayer) override;
 
 public:
-	FTimerHandle TimerHandle;
-
+	AAutoSiegeGameStateBase* GameState_Ref;
 	TArray<AAutoSiegePlayerController*> PlayerControllerArray;
 	TArray<AAutoSiegePlayerState*> PlayerStateArray;
-	AAutoSiegeGameStateBase* GameState_Ref;
+
+	FTimerHandle TimerHandle;
+
+	void CheckAllPlayersReady();
+
+	TArray<int32> GetCardsFromPool(int32 MaxTier, int32 NumberOfCards);
+	void ReturnCardsToPool(TArray<int32> CardIDs);
 
 private:
 	UDataTable* HeroDataTable;
 	TArray<FName> HeroPool;
 
 	UDataTable* CardDataTable;
-	TArray<TArray<FName>> CardPool;
+	TArray<TArray<int32>> CardPool;
 
 	void TimerCountdown();
 

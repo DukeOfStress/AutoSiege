@@ -16,11 +16,15 @@ public:
 
 	void UpdateRoundTimer();
 	void UpdatePlayersReady();
+	void UpdateShopUpgradeCost(int32 ShopUpgradeCost);
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UTextBlock* RoundTimer_Text = nullptr;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UTextBlock* PlayersReady_Text = nullptr;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	class UTextBlock* ShopUpgradeCost_Text = nullptr;
 
 };

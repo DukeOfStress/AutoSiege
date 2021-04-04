@@ -1,52 +1,30 @@
 #include "AutoSiegePlayerState.h"
+
+#include "AutoSiegeHUD.h"
+#include "AutoSiegeUserWidget.h"
 #include "AutoSiegePlayerController.h"
 #include "Portrait.h"
-
-AAutoSiegePlayerState::AAutoSiegePlayerState() 
-{
-    AvailableHeroes = {};
-}
 
 void AAutoSiegePlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     DOREPLIFETIME(AAutoSiegePlayerState, PlayerIndex);
-    DOREPLIFETIME(AAutoSiegePlayerState, AvailableHeroes);
     DOREPLIFETIME(AAutoSiegePlayerState, ChosenHero);
+	DOREPLIFETIME(AAutoSiegePlayerState, Gold);
+	DOREPLIFETIME(AAutoSiegePlayerState, ShopCards);
+	DOREPLIFETIME(AAutoSiegePlayerState, ShopTier);
+	DOREPLIFETIME(AAutoSiegePlayerState, ShopUpgradePrice);
+}
+
+void AAutoSiegePlayerState::OnRep_ChosenHero()
+{
 
 }
 
-void AAutoSiegePlayerState::OnRep_AvailableHeroes()
+void AAutoSiegePlayerState::OnRep_Gold()
 {
-	AAutoSiegePlayerController* PlayerController = GetWorld()->GetFirstPlayerController<AAutoSiegePlayerController>();
-
-	if (GetOwner() != PlayerController)
-		return;
-	
-	UObject* SpawnActor = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("Blueprint'/Game/Portrait.Portrait'")));
-	UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnActor);
-	if ( !SpawnActor )
-		return;
-
-	UClass* SpawnClass = SpawnActor->StaticClass();
-	if ( SpawnActor == NULL )
-		return;
-
-	UWorld* World = GetWorld();
-
-	for (int i = 0; i < AvailableHeroes.Num(); i++)
-	{
-		FVector Location(400.0f * i - 400.f, 0.0f, 1000.0f);
-		FRotator Rotation(0.0f, 0.0f, 0.0f);
-		FActorSpawnParameters SpawnParams;
-		SpawnParams.Owner = this;
-		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-		APortrait* portrait = World->SpawnActor<APortrait>(GeneratedBP->GeneratedClass, Location, Rotation, SpawnParams);
-		portrait->OnUpdatePortrait(AvailableHeroes[i]);
-		PlayerController->HeroSelectPortraits.Add(portrait);
-	}
-
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "OnRep_Gold");
 }
 
 void AAutoSiegePlayerState::OnRep_ShopCards()
@@ -57,4 +35,23 @@ void AAutoSiegePlayerState::OnRep_ShopCards()
 		return;
 
 
+}
+
+void AAutoSiegePlayerState::OnRep_ShopTier()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "OnRep_ShopTier");
+}
+
+
+void AAutoSiegePlayerState::OnRep_ShopUpgradePrice()
+{
+	AAutoSiegePlayerController* PlayerController = GetWorld()->GetFirstPlayerController<AAutoSiegePlayerController>();
+
+	if (GetOwner() != PlayerController)
+		return;
+
+	AAutoSiegeHUD* hud = Cast<AAutoSiegeHUD>(PlayerController->GetHUD());
+
+	UAutoSiegeUserWidget* uw = (UAutoSiegeUserWidget*)hud->CurrentWidget;
+	//uw->UpdateShopUpgradeCost(ShopUpgradePrice);
 }

@@ -5,12 +5,16 @@
 
 #include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerState.h"
-#include "Board.h"
+#include "AutoSiegeHUD.h"
+#include "AutoSiegeUserWidget.h"
 #include "Portrait.h"
 
 #include "AutoSiegePlayerController.generated.h"
 
-UCLASS()
+// Forward declaration to enable circular reference
+class AAutoSiegeGameModeBase;
+
+UCLASS(Blueprintable, BlueprintType)
 class AUTOSIEGE_API AAutoSiegePlayerController : public APlayerController
 {
 
@@ -23,46 +27,71 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
+	AAutoSiegeGameModeBase* GameMode_Ref;
 	AAutoSiegeGameStateBase* GameState_Ref;
 	AAutoSiegePlayerState* PlayerState_Ref;
 
 	TArray<APortrait*> HeroSelectPortraits;
 	APortrait* HeroPortrait;
 
-	bool PlayerReadyCheck[8] = { false };
+	bool IsPlayerReady = false;
 
 	UFUNCTION(BlueprintCallable)
 	void SelectHero(APortrait* hero);
 	
-	UFUNCTION(Server, Reliable, WithValidation)
+	UFUNCTION(Server, Reliable)
 	void Server_PlayerReady(FName HeroName);
 
-	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_UpgradeShop();
 
-	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_RefreshShop();
 
-	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_FreezeShop();
 
-	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_BuyCard();
 
-	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_SellCard();
 
-	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_PlayCard();
 
-	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_ReorderCards();
 
-	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_CastHeroAbility();
 
-	UPROPERTY(BlueprintReadOnly)
-	ABoard* PlayerBoard;
+
+
+
+
+
+
+
+	UFUNCTION(Client, Reliable)
+	void Client_DoSomething(int32 i);
+
+	UFUNCTION(Client, Reliable)
+	void Client_PresentHeroes(const TArray<FName>& Heroes);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void PresentHeroes(const TArray<FName>& Heroes);
+
+
+
+
+
+
+
+
+
+
+
 
 };
 

@@ -33,7 +33,6 @@ public:
 	UPROPERTY(Replicated)
 	FName Heroes[8];
 
-	UPROPERTY(ReplicatedUsing = OnRep_CurrentStage)
 	TEnumAsByte<GameStage> CurrentStage;
 
 private:
@@ -42,8 +41,5 @@ private:
 
 	UFUNCTION()
 	void OnRep_NumberOfReadyPlayers();
-
-	UFUNCTION()
-	void OnRep_CurrentStage();
 
 };
