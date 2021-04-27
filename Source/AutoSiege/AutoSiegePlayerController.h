@@ -31,70 +31,18 @@ public:
 	AAutoSiegeGameStateBase* GameState_Ref;
 	AAutoSiegePlayerState* PlayerState_Ref;
 
-	TArray<APortrait*> HeroSelectPortraits;
-	APortrait* HeroPortrait;
-
 	bool IsPlayerReady = false;
-
-	UFUNCTION(BlueprintCallable)
-	void SelectHero(APortrait* hero);
 	
-	UFUNCTION(Server, Reliable)
+	UFUNCTION(Server, Reliable, BlueprintCallable)
 	void Server_PlayerReady(FName HeroName);
-
-	UFUNCTION(BlueprintCallable, Server, Reliable)
-	void Server_UpgradeShop();
-
-	UFUNCTION(BlueprintCallable, Server, Reliable)
-	void Server_RefreshShop();
-
-	UFUNCTION(BlueprintCallable, Server, Reliable)
-	void Server_FreezeShop();
-
-	UFUNCTION(BlueprintCallable, Server, Reliable)
-	void Server_BuyCard();
-
-	UFUNCTION(BlueprintCallable, Server, Reliable)
-	void Server_SellCard();
-
-	UFUNCTION(BlueprintCallable, Server, Reliable)
-	void Server_PlayCard();
-
-	UFUNCTION(BlueprintCallable, Server, Reliable)
-	void Server_ReorderCards();
-
-	UFUNCTION(BlueprintCallable, Server, Reliable)
-	void Server_CastHeroAbility();
-
-
-
-
-
-
-
-
-	UFUNCTION(Client, Reliable)
-	void Client_DoSomething(int32 i);
 
 	UFUNCTION(Client, Reliable)
 	void Client_PresentHeroes(const TArray<FName>& Heroes);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void PresentHeroes(const TArray<FName>& Heroes);
-
-
-
-
-
-
-
-
-
-
-
+	void BP_PresentHeroes(const TArray<FName>& Heroes);
 
 };
-
 
 /*
 

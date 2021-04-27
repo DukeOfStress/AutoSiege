@@ -14,11 +14,10 @@ class AUTOSIEGE_API APortrait : public AActor
 public:	
 	APortrait();
 
-	FName Name;
+	UPROPERTY(BlueprintReadWrite)
+	FName CurrentHeroName;
 
-	void OnUpdatePortrait(FName HeroName);
-
-	UFUNCTION(BlueprintImplementableEvent, Category = "Portrait", meta = (DisplayName = "OnUpdatePortrait"))
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Portrait", meta = (DisplayName = "OnUpdatePortrait"))
 	void ReceiveOnUpdatePortrait(FName HeroName);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Portrait", meta = (DisplayName = "OnUpdateHealth"))

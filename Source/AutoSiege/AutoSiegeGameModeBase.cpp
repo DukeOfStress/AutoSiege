@@ -95,9 +95,9 @@ void AAutoSiegeGameModeBase::PostLogin(APlayerController* NewPlayer)
 
 	// Set the PlayerState defaults
 	ps->PlayerIndex = PlayerControllerArray.Num() - 1;
-	ps->Gold = 200; //TODO: Starting gold should be 3
-	ps->ShopUpgradePrice = 5;
-	ps->ShopTier = 1;
+	//ps->Gold = 200; //TODO: Starting gold should be 3
+	//ps->ShopUpgradePrice = 5;
+	//ps->ShopTier = 1;
 
 	// Dish out heroes from the pool into the PlayerState
 	TArray<FName> Heroes;
