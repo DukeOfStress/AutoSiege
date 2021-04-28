@@ -75,7 +75,14 @@ void AAutoSiegeGameModeBase::BeginPlay()
 		}
 	}
 
-	GetWorldTimerManager().SetTimer(TimerHandle, this, &AAutoSiegeGameModeBase::TimerCountdown, 1.0f, true, 2.0f);
+	GetWorldTimerManager().SetTimer(
+		PlayerReadyTimerHandle, 
+		this, 
+		&AAutoSiegeGameModeBase::PlayerReadyTimerCountdown,
+		1.0f,
+		true,
+		2.0f
+	);
 
 }
 
@@ -95,11 +102,10 @@ void AAutoSiegeGameModeBase::PostLogin(APlayerController* NewPlayer)
 
 	// Set the PlayerState defaults
 	ps->PlayerIndex = PlayerControllerArray.Num() - 1;
-	//ps->Gold = 200; //TODO: Starting gold should be 3
-	//ps->ShopUpgradePrice = 5;
-	//ps->ShopTier = 1;
+	ps->Gold = 3;
+	ps->ShopUpgradePrice = 5;
+	ps->ShopTier = 1;
 
-	// Dish out heroes from the pool into the PlayerState
 	TArray<FName> Heroes;
 	for (int i = ps->PlayerIndex * 3; i < (ps->PlayerIndex * 3) + 3; i++)
 	{
@@ -115,13 +121,20 @@ void AAutoSiegeGameModeBase::CheckAllPlayersReady()
 {
 	if (GameState_Ref->NumberOfReadyPlayers < GameState_Ref->TotalNumberOfPlayers)
 		return;
-
 	
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "All players are ready!");
+	TriggerShopPhase();
+}
+
+void AAutoSiegeGameModeBase::TriggerShopPhase()
+{
 	GameState_Ref->CurrentStage = GameStage::Shop;
-
-	// TODO: Multicast switch to shop
-
+	
+	for (int32 i = 0; i < PlayerControllerArray.Num(); i++)
+	{
+		const TArray<FName> Cards;
+		PlayerControllerArray[i]->Client_BeginShop(Cards);
+		PlayerStateArray[i];
+	}
 }
 
 TArray<int32> AAutoSiegeGameModeBase::GetCardsFromPool(int32 MaxTier, int32 NumberOfCards)
@@ -158,12 +171,25 @@ void AAutoSiegeGameModeBase::ReturnCardsToPool(TArray<int32> CardIDs)
 	}
 }
 
-void AAutoSiegeGameModeBase::TimerCountdown()
+void AAutoSiegeGameModeBase::PlayerReadyTimerCountdown()
 {
 	GameState_Ref->RoundTimer--;
 
 	if (GameState_Ref->RoundTimer <= 0.f)
 	{
-		GetWorldTimerManager().ClearTimer(TimerHandle);
+		GetWorldTimerManager().ClearTimer(PlayerReadyTimerHandle);
+		AllowPlayerReady = false;
+
+		// TODO: Handle unselect hero select
+		for (int32 i = 0; i < GameState_Ref->TotalNumberOfPlayers; i++)
+		{
+			if (GameState_Ref->Heroes[i].IsNone())
+			{
+				// TODO: Do we want to randomize this? Or always pick the first?
+				FName SelectedHero = HeroPool[i * 3];
+				GameState_Ref->Heroes[i] = SelectedHero;
+				PlayerControllerArray[i]->Client_HeroApproved(SelectedHero);
+			}
+		}
 	}
 }

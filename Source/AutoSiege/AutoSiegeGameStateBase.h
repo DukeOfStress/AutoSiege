@@ -21,7 +21,7 @@ class AUTOSIEGE_API AAutoSiegeGameStateBase : public AGameStateBase
 
 public:
 	UPROPERTY(ReplicatedUsing = OnRep_RoundTimer)
-	float RoundTimer = 60.f;
+		float RoundTimer = 60.f;
 
 	int NumberOfConnectedPlayers = 0;
 
@@ -31,7 +31,10 @@ public:
 	const int TotalNumberOfPlayers = 3;
 
 	UPROPERTY(Replicated)
-	FName Heroes[8];
+	FName Heroes[3];  // TODO: Make sure this matches TotalNumberOfPlayers
+					  // What happens when people don't connect to the game
+					  // Arguably, a game with 2-8 players is valid? ...or do we cancel the game if not enough
+					  // players are connected. Or do we let the AI take over??
 
 	TEnumAsByte<GameStage> CurrentStage;
 

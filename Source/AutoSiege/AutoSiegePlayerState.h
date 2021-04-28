@@ -16,4 +16,16 @@ public:
 	UPROPERTY(Replicated)
 	int PlayerIndex;
 
+	UPROPERTY(Replicated)
+	uint32 Gold;
+
+	UPROPERTY(Replicated)
+	uint32 ShopTier;
+
+	UPROPERTY(Replicated)
+	uint32 ShopUpgradePrice;
+
+	UPROPERTY(Replicated)
+	TArray<uint32> ShopCards;
+
 };

@@ -25,8 +25,11 @@ void AAutoSiegePlayerController::BeginPlay()
 
 }
 
-void AAutoSiegePlayerController::Server_PlayerReady_Implementation(FName HeroName)
+void AAutoSiegePlayerController::Server_SelectHero_Implementation(FName HeroName)
 {
+
+	if (!GameMode_Ref->AllowPlayerReady)
+		return;
 
 	if (IsPlayerReady)
 		return;
@@ -35,6 +38,8 @@ void AAutoSiegePlayerController::Server_PlayerReady_Implementation(FName HeroNam
 
 	GameState_Ref->NumberOfReadyPlayers++;
 	GameState_Ref->Heroes[PlayerState_Ref->PlayerIndex] = HeroName;
+
+	Client_HeroApproved(HeroName);
 
 	GameMode_Ref->CheckAllPlayersReady();
 
@@ -47,5 +52,25 @@ void AAutoSiegePlayerController::Client_PresentHeroes_Implementation(const TArra
 		return;
 	
 	BP_PresentHeroes(Heroes);
+
+}
+
+void AAutoSiegePlayerController::Client_HeroApproved_Implementation(FName HeroName)
+{
+
+	if (HasAuthority())
+		return;
+
+	BP_HeroApproved(HeroName);
+
+}
+
+void AAutoSiegePlayerController::Client_BeginShop_Implementation(const TArray<FName>& Cards)
+{
+
+	if (HasAuthority())
+		return;
+
+	BP_BeginShop(Cards);
 
 }

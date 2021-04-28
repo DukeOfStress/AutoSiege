@@ -10,43 +10,8 @@ void AAutoSiegePlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>
 
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     DOREPLIFETIME(AAutoSiegePlayerState, PlayerIndex);
+    DOREPLIFETIME(AAutoSiegePlayerState, Gold);
+    DOREPLIFETIME(AAutoSiegePlayerState, ShopCards);
+    DOREPLIFETIME(AAutoSiegePlayerState, ShopTier);
+    DOREPLIFETIME(AAutoSiegePlayerState, ShopUpgradePrice);
 }
-
-//void AAutoSiegePlayerState::OnRep_ChosenHero()
-//{
-//
-//}
-//
-//void AAutoSiegePlayerState::OnRep_Gold()
-//{
-//	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "OnRep_Gold");
-//}
-//
-//void AAutoSiegePlayerState::OnRep_ShopCards()
-//{
-//	AAutoSiegePlayerController* PlayerController = GetWorld()->GetFirstPlayerController<AAutoSiegePlayerController>();
-//
-//	if (GetOwner() != PlayerController)
-//		return;
-//
-//
-//}
-//
-//void AAutoSiegePlayerState::OnRep_ShopTier()
-//{
-//	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "OnRep_ShopTier");
-//}
-//
-//
-//void AAutoSiegePlayerState::OnRep_ShopUpgradePrice()
-//{
-//	AAutoSiegePlayerController* PlayerController = GetWorld()->GetFirstPlayerController<AAutoSiegePlayerController>();
-//
-//	if (GetOwner() != PlayerController)
-//		return;
-//
-//	AAutoSiegeHUD* hud = Cast<AAutoSiegeHUD>(PlayerController->GetHUD());
-//
-//	UAutoSiegeUserWidget* uw = (UAutoSiegeUserWidget*)hud->CurrentWidget;
-//	//uw->UpdateShopUpgradeCost(ShopUpgradePrice);
-//}

@@ -56,9 +56,11 @@ public:
 	TArray<AAutoSiegePlayerController*> PlayerControllerArray;
 	TArray<AAutoSiegePlayerState*> PlayerStateArray;
 
-	FTimerHandle TimerHandle;
+	FTimerHandle PlayerReadyTimerHandle;
+	bool AllowPlayerReady = true;
 
 	void CheckAllPlayersReady();
+	void TriggerShopPhase();
 
 	TArray<int32> GetCardsFromPool(int32 MaxTier, int32 NumberOfCards);
 	void ReturnCardsToPool(TArray<int32> CardIDs);
@@ -70,6 +72,6 @@ private:
 	UDataTable* CardDataTable;
 	TArray<TArray<int32>> CardPool;
 
-	void TimerCountdown();
+	void PlayerReadyTimerCountdown();
 
 };

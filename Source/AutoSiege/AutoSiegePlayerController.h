@@ -32,15 +32,30 @@ public:
 	AAutoSiegePlayerState* PlayerState_Ref;
 
 	bool IsPlayerReady = false;
-	
-	UFUNCTION(Server, Reliable, BlueprintCallable)
-	void Server_PlayerReady(FName HeroName);
 
+	
 	UFUNCTION(Client, Reliable)
 	void Client_PresentHeroes(const TArray<FName>& Heroes);
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void BP_PresentHeroes(const TArray<FName>& Heroes);
+
+
+	UFUNCTION(Server, Reliable, BlueprintCallable)
+	void Server_SelectHero(FName HeroName);
+
+	UFUNCTION(Client, Reliable)
+	void Client_HeroApproved(FName HeroName);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_HeroApproved(FName HeroName);
+
+	
+	UFUNCTION(Client, Reliable)
+	void Client_BeginShop(const TArray<FName>& Cards);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_BeginShop(const TArray<FName>& Cards);
 
 };
 
