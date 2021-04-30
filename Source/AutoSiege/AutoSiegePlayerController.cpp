@@ -18,7 +18,7 @@ void AAutoSiegePlayerController::BeginPlay()
 	PlayerState_Ref = GetPlayerState<AAutoSiegePlayerState>();
 }
 
-void AAutoSiegePlayerController::Server_SelectHero_Implementation(FName HeroName)
+void AAutoSiegePlayerController::Server_SelectHero_Implementation(const FName HeroName)
 {
 	if (!GameMode_Ref->AllowPlayerReady)
 		return;
@@ -44,7 +44,7 @@ void AAutoSiegePlayerController::Client_PresentHeroes_Implementation(const TArra
 	BP_PresentHeroes(Heroes);
 }
 
-void AAutoSiegePlayerController::Client_HeroApproved_Implementation(FName HeroName)
+void AAutoSiegePlayerController::Client_HeroApproved_Implementation(const FName HeroName)
 {
 	if (HasAuthority())
 		return;

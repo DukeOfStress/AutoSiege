@@ -43,13 +43,13 @@ public:
 
 
 	UFUNCTION(Server, Reliable, BlueprintCallable)
-	void Server_SelectHero(FName HeroName);
+	void Server_SelectHero(const FName HeroName);
 
 	UFUNCTION(Client, Reliable)
-	void Client_HeroApproved(FName HeroName);
+	void Client_HeroApproved(const FName HeroName);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_HeroApproved(FName HeroName);
+	void BP_HeroApproved(const FName HeroName);
 
 
 	UFUNCTION(Client, Reliable)
