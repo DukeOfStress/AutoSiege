@@ -138,23 +138,24 @@ void AAutoSiegeGameModeBase::CheckAllPlayersReady()
 void AAutoSiegeGameModeBase::TriggerShopPhase()
 {
 	GameState_Ref->CurrentStage = GameStage::Shop;
-	
-	for (int32 i = 0; i < PlayerControllerArray.Num(); i++)
+
+	for (auto PlayerController : PlayerControllerArray)
 	{
-		const TArray<FName> Cards;
-		PlayerControllerArray[i]->Client_BeginShop(Cards);
+		// TODO: Get player's shop cards
+		const TArray<int32> Cards = GetCardsFromPool(PlayerController->PlayerState_Ref->ShopTier, 4);
+		PlayerController->Client_BeginShop(Cards);
 	}
 }
 
 TArray<int32> AAutoSiegeGameModeBase::GetCardsFromPool(const int32 MaxTier, const int32 NumberOfCards)
 {
-	TArray<int32> CardIDs = {};
+	TArray<int32> CardIDs;
 
 	if (MaxTier < 0 || MaxTier > 5)
 		return CardIDs;
 
 	TArray<int32> TempPool = {};
-	for (int32 i = 0; i <= MaxTier; i++)
+	for (int32 i = 0; i < MaxTier; i++)
 	{
 		for (int32 j = 0; j < CardPool[i].Num(); j++)
 		{

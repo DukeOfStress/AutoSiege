@@ -23,8 +23,13 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
+	UPROPERTY()
 	AAutoSiegeGameModeBase* GameMode_Ref;
+
+	UPROPERTY()
 	AAutoSiegeGameStateBase* GameState_Ref;
+
+	UPROPERTY()
 	AAutoSiegePlayerState* PlayerState_Ref;
 
 	bool IsPlayerReady = false;
@@ -55,10 +60,10 @@ public:
 
 	
 	UFUNCTION(Client, Reliable)
-	void Client_BeginShop(const TArray<FName>& Cards);
+	void Client_BeginShop(const TArray<int32>& Cards);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_BeginShop(const TArray<FName>& Cards);
+	void BP_BeginShop(const TArray<int32>& Cards);
 
 };
 

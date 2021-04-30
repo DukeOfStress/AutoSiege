@@ -60,7 +60,7 @@ void AAutoSiegePlayerController::Client_AllPlayersReady_Implementation(const TAr
 	BP_AllPlayersReady(Heroes);
 }
 
-void AAutoSiegePlayerController::Client_BeginShop_Implementation(const TArray<FName>& Cards)
+void AAutoSiegePlayerController::Client_BeginShop_Implementation(const TArray<int32>& Cards)
 {
 	if (HasAuthority())
 		return;
