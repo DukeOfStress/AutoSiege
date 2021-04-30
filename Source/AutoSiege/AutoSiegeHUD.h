@@ -16,10 +16,10 @@ public:
 
 	virtual void BeginPlay() override;
 	
-	UPROPERTY(EditAnywhere, Category = "Network")
+	UPROPERTY()
 	TSubclassOf<class UUserWidget> HUDWidgetClass;
 
-	UPROPERTY(EditAnywhere, Category = "Network")
+	UPROPERTY(BlueprintReadOnly)
 	class UUserWidget* CurrentWidget;
 
 };

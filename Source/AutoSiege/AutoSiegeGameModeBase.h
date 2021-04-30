@@ -4,11 +4,9 @@
 #include "Engine/DataTable.h"
 #include "Engine/EngineTypes.h"
 #include "GameFramework/GameModeBase.h"
-
 #include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerController.h"
 #include "AutoSiegePlayerState.h"
-
 #include "AutoSiegeGameModeBase.generated.h"
 
 USTRUCT(BlueprintType)

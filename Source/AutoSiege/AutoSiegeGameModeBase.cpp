@@ -1,19 +1,23 @@
 #include "AutoSiegeGameModeBase.h"
-
 #include "AutoSiegeHUD.h"
 
 AAutoSiegeGameModeBase::AAutoSiegeGameModeBase(const class FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-
-	GameStateClass = AAutoSiegeGameStateBase::StaticClass();
+	// Override C++ GameStateBase with the Blueprint
+	const ConstructorHelpers::FClassFinder<AAutoSiegeGameStateBase> BlueprintGameStateBase(TEXT("Class'/Game/BP_AutoSiegeGameStateBase.BP_AutoSiegeGameStateBase_C'"));
+	if (BlueprintGameStateBase.Class != nullptr)
+	{
+		GameStateClass = BlueprintGameStateBase.Class;
+	}	
+	
 	PlayerControllerClass = AAutoSiegePlayerController::StaticClass();
 	PlayerStateClass = AAutoSiegePlayerState::StaticClass();
 	HUDClass = AAutoSiegeHUD::StaticClass();
 
 	// Override C++ PlayerController with the Blueprint
-	ConstructorHelpers::FClassFinder<AAutoSiegePlayerController> BlueprintPlayerController(TEXT("Class'/Game/BP_AutoSiegePlayerController.BP_AutoSiegePlayerController_C'"));
-	if (BlueprintPlayerController.Class != NULL)
+	const ConstructorHelpers::FClassFinder<AAutoSiegePlayerController> BlueprintPlayerController(TEXT("Class'/Game/BP_AutoSiegePlayerController.BP_AutoSiegePlayerController_C'"));
+	if (BlueprintPlayerController.Class != nullptr)
 	{
 		PlayerControllerClass = BlueprintPlayerController.Class;
 	}
@@ -31,12 +35,10 @@ AAutoSiegeGameModeBase::AAutoSiegeGameModeBase(const class FObjectInitializer& O
 	}
 
 	bPauseable = false;
-
 }
 
 void AAutoSiegeGameModeBase::BeginPlay()
 {
-
 	Super::BeginPlay();
 
 	GameState_Ref = GetGameState<AAutoSiegeGameStateBase>();
@@ -46,10 +48,10 @@ void AAutoSiegeGameModeBase::BeginPlay()
 	// Shuffle HeroPool
 	for (int32 i = HeroPool.Num() - 1; i > 0; i--)
 	{
-		int32 j = FMath::FloorToInt(FMath::SRand() * (i + 1)) % HeroPool.Num();
-		FName temp = HeroPool[i];
-		HeroPool[i] = HeroPool[j];
-		HeroPool[j] = temp;
+		const int32 RandomIndex = FMath::FloorToInt(FMath::SRand() * (i + 1)) % HeroPool.Num();
+		const FName Temp = HeroPool[i];
+		HeroPool[i] = HeroPool[RandomIndex];
+		HeroPool[RandomIndex] = Temp;
 	}
 
 	// Create an empty array in CardPool for all 6 tiers.
@@ -64,7 +66,7 @@ void AAutoSiegeGameModeBase::BeginPlay()
 	{
 		// Cast CardID to int
 		int CardID = FCString::Atoi(*(CardIDs[i].ToString()));
-		int CardTier = CardID / 512;
+		const int CardTier = CardID / 512;
 
 		if (CardTier < 0 || CardTier > 5)
 			continue;
@@ -84,44 +86,52 @@ void AAutoSiegeGameModeBase::BeginPlay()
 		2.0f
 	);
 
+	GameState_Ref->Heroes.SetNum(GameState_Ref->TotalNumberOfPlayers);
 }
 
 void AAutoSiegeGameModeBase::PostLogin(APlayerController* NewPlayer)
 {
-
 	Super::PostLogin(NewPlayer);
 
 	if (PlayerControllerArray.Num() > GameState_Ref->TotalNumberOfPlayers)
 		return;
 
-	auto pc = (AAutoSiegePlayerController*)NewPlayer;
-	PlayerControllerArray.AddUnique(pc);
+	const auto PlayerController = static_cast<AAutoSiegePlayerController*>(NewPlayer);
+	PlayerControllerArray.AddUnique(PlayerController);
 		
-	auto ps = (AAutoSiegePlayerState*)(pc->PlayerState);
-	PlayerStateArray.AddUnique(ps);
+	const auto PlayerState = static_cast<AAutoSiegePlayerState*>(PlayerController->PlayerState);
+	PlayerStateArray.AddUnique(PlayerState);
 
 	// Set the PlayerState defaults
-	ps->PlayerIndex = PlayerControllerArray.Num() - 1;
-	ps->Gold = 3;
-	ps->ShopUpgradePrice = 5;
-	ps->ShopTier = 1;
+	PlayerState->PlayerIndex = PlayerControllerArray.Num() - 1;
+	PlayerState->Gold = 3;
+	PlayerState->ShopUpgradePrice = 5;
+	PlayerState->ShopTier = 1;
 
 	TArray<FName> Heroes;
-	for (int i = ps->PlayerIndex * 3; i < (ps->PlayerIndex * 3) + 3; i++)
+	for (int i = PlayerState->PlayerIndex * 3; i < (PlayerState->PlayerIndex * 3) + 3; i++)
 	{
 		Heroes.Add(HeroPool[i]);
 	}
-	GameState_Ref->NumberOfConnectedPlayers++;
 
-	pc->Client_PresentHeroes(Heroes);
-
+	PlayerController->Client_PresentHeroes(Heroes);
 }
 
 void AAutoSiegeGameModeBase::CheckAllPlayersReady()
 {
-	if (GameState_Ref->NumberOfReadyPlayers < GameState_Ref->TotalNumberOfPlayers)
-		return;
-	
+	for (auto HeroName : GameState_Ref->Heroes)
+	{
+		if (HeroName.IsNone())
+			return;
+	}
+
+	for (auto PlayerController : PlayerControllerArray)
+	{
+		const TArray<FName> Cards;
+		PlayerController->Client_AllPlayersReady(GameState_Ref->Heroes);
+	}
+
+	// TODO: Remove if this is the only reference! (not sure yet)
 	TriggerShopPhase();
 }
 
@@ -133,7 +143,6 @@ void AAutoSiegeGameModeBase::TriggerShopPhase()
 	{
 		const TArray<FName> Cards;
 		PlayerControllerArray[i]->Client_BeginShop(Cards);
-		PlayerStateArray[i];
 	}
 }
 
@@ -155,7 +164,7 @@ TArray<int32> AAutoSiegeGameModeBase::GetCardsFromPool(int32 MaxTier, int32 Numb
 
 	for (int32 i = 0; i < NumberOfCards; i++)
 	{
-		int32 RandomIndex = FMath::RandRange(0, TempPool.Num() - 1);
+		const int32 RandomIndex = FMath::RandRange(0, TempPool.Num() - 1);
 		CardIDs.Add(TempPool[RandomIndex]);
 		TempPool.RemoveAt(RandomIndex);
 	}
@@ -180,16 +189,17 @@ void AAutoSiegeGameModeBase::PlayerReadyTimerCountdown()
 		GetWorldTimerManager().ClearTimer(PlayerReadyTimerHandle);
 		AllowPlayerReady = false;
 
-		// TODO: Handle unselect hero select
 		for (int32 i = 0; i < GameState_Ref->TotalNumberOfPlayers; i++)
 		{
 			if (GameState_Ref->Heroes[i].IsNone())
 			{
 				// TODO: Do we want to randomize this? Or always pick the first?
-				FName SelectedHero = HeroPool[i * 3];
+				const FName SelectedHero = HeroPool[i * 3];
 				GameState_Ref->Heroes[i] = SelectedHero;
 				PlayerControllerArray[i]->Client_HeroApproved(SelectedHero);
 			}
 		}
+
+		CheckAllPlayersReady();
 	}
 }

@@ -2,13 +2,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-
 #include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerState.h"
-#include "AutoSiegeHUD.h"
 #include "AutoSiegeUserWidget.h"
-#include "Portrait.h"
-
 #include "AutoSiegePlayerController.generated.h"
 
 // Forward declaration to enable circular reference
@@ -49,6 +45,13 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void BP_HeroApproved(FName HeroName);
+
+
+	UFUNCTION(Client, Reliable)
+	void Client_AllPlayersReady(const TArray<FName>& Heroes);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_AllPlayersReady(const TArray<FName>& Heroes);
 
 	
 	UFUNCTION(Client, Reliable)
