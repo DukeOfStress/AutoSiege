@@ -146,7 +146,7 @@ void AAutoSiegeGameModeBase::TriggerShopPhase()
 	}
 }
 
-TArray<int32> AAutoSiegeGameModeBase::GetCardsFromPool(int32 MaxTier, int32 NumberOfCards)
+TArray<int32> AAutoSiegeGameModeBase::GetCardsFromPool(const int32 MaxTier, const int32 NumberOfCards)
 {
 	TArray<int32> CardIDs = {};
 

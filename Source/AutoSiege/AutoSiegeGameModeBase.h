@@ -50,8 +50,13 @@ protected:
 	virtual void PostLogin(APlayerController* NewPlayer) override;
 
 public:
+	UPROPERTY()
 	AAutoSiegeGameStateBase* GameState_Ref;
+
+	UPROPERTY()
 	TArray<AAutoSiegePlayerController*> PlayerControllerArray;
+
+	UPROPERTY()
 	TArray<AAutoSiegePlayerState*> PlayerStateArray;
 
 	FTimerHandle PlayerReadyTimerHandle;
@@ -64,9 +69,11 @@ public:
 	void ReturnCardsToPool(TArray<int32> CardIDs);
 
 private:
+	UPROPERTY()
 	UDataTable* HeroDataTable;
 	TArray<FName> HeroPool;
 
+	UPROPERTY()
 	UDataTable* CardDataTable;
 	TArray<TArray<int32>> CardPool;
 
