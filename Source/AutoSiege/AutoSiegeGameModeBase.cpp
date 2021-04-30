@@ -104,7 +104,7 @@ void AAutoSiegeGameModeBase::PostLogin(APlayerController* NewPlayer)
 
 	// Set the PlayerState defaults
 	PlayerState->PlayerIndex = PlayerControllerArray.Num() - 1;
-	PlayerState->Gold = 3;
+	PlayerState->Gold = 0;
 	PlayerState->ShopUpgradePrice = 5;
 	PlayerState->ShopTier = 1;
 
@@ -139,11 +139,42 @@ void AAutoSiegeGameModeBase::TriggerShopPhase()
 {
 	GameState_Ref->CurrentStage = GameStage::Shop;
 
+	int32 RoundGold = 2 + GameState_Ref->RoundNumber;
+	if (RoundGold > 10)
+		RoundGold = 10;
+	
 	for (auto PlayerController : PlayerControllerArray)
 	{
-		// TODO: Get player's shop cards
-		const TArray<int32> Cards = GetCardsFromPool(PlayerController->PlayerState_Ref->ShopTier, 4);
-		PlayerController->Client_BeginShop(Cards);
+		int32 MaximumAllowedCards;
+		switch (PlayerController->PlayerState_Ref->ShopTier)
+		{
+			case 2:
+			case 3:
+				MaximumAllowedCards = 4;
+				break;
+			case 4:
+			case 5:
+				MaximumAllowedCards = 5;
+				break;
+			case 6:
+				MaximumAllowedCards = 6;
+				break;
+			case 1:
+			default:
+				MaximumAllowedCards = 3;
+				break;
+		}
+
+		if (PlayerController->PlayerState_Ref->ShopCards.Num() < MaximumAllowedCards)
+		{
+			const int32 CardsToDraw = MaximumAllowedCards - PlayerController->PlayerState_Ref->ShopCards.Num();
+			const TArray<int32> NewCards = GetCardsFromPool(PlayerController->PlayerState_Ref->ShopTier, CardsToDraw);
+
+			PlayerController->PlayerState_Ref->ShopCards.Append(NewCards);
+		}
+
+		PlayerController->PlayerState_Ref->Gold = RoundGold;
+		PlayerController->Client_BeginShop(RoundGold, PlayerController->PlayerState_Ref->ShopCards);
 	}
 }
 

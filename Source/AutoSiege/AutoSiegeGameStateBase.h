@@ -19,8 +19,10 @@ class AUTOSIEGE_API AAutoSiegeGameStateBase : public AGameStateBase
 	GENERATED_BODY()
 
 public:
+	int32 RoundNumber = 1;
+	
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_RoundTimer)
-	float RoundTimer = 60.f;
+	float RoundTimer = 15.f;
 
 	UPROPERTY(BlueprintReadOnly)
 	int32 TotalNumberOfPlayers = 3;

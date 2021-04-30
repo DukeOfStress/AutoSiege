@@ -20,13 +20,13 @@ public:
 	UPROPERTY(Replicated)
 	uint32 Gold;
 
-	UPROPERTY(Replicated)
 	uint32 ShopTier;
 
 	UPROPERTY(Replicated)
 	uint32 ShopUpgradePrice;
 
-	UPROPERTY(Replicated)
-	TArray<uint32> ShopCards;
+	TArray<int32> ShopCards;
+
+	bool ShopFrozen = false;
 
 };

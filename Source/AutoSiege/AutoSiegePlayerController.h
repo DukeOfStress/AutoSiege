@@ -60,11 +60,30 @@ public:
 
 	
 	UFUNCTION(Client, Reliable)
-	void Client_BeginShop(const TArray<int32>& Cards);
+	void Client_BeginShop(const int32 Gold, const TArray<int32>& Cards);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_BeginShop(const TArray<int32>& Cards);
+	void BP_BeginShop(const int32 Gold, const TArray<int32>& Cards);
 
+
+	UFUNCTION(Server, Reliable)
+	void Server_UpgradeShopTier();
+
+	UFUNCTION(Client, Reliable)
+	void Client_UpgradeShopTier(const int32 NewShopTier);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_UpgradeShopTier(const int32 NewShopTier);
+
+
+	UFUNCTION(Server, Reliable)
+	void Server_ToggleFreezeShop();
+
+	UFUNCTION(Client, Reliable)
+	void Client_ToggleFreezeShop(const bool IsShopFrozen);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_ToggleFreezeShop(const bool IsShopFrozen);
 };
 
 /*
@@ -72,9 +91,5 @@ public:
  Player Data:
   - Cards in lineup
   - Cards in hand
-  - Shop tier level
-  - Shop offering
-  - Shop is frozen
-  - Current and total gold
 
 */
