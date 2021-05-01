@@ -6,7 +6,5 @@ void AAutoSiegePlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>
 {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     DOREPLIFETIME(AAutoSiegePlayerState, PlayerIndex);
-    DOREPLIFETIME(AAutoSiegePlayerState, Hero);
-    DOREPLIFETIME(AAutoSiegePlayerState, Gold);
-    DOREPLIFETIME(AAutoSiegePlayerState, ShopUpgradePrice);
+    DOREPLIFETIME(AAutoSiegePlayerState, ShopTier);
 }

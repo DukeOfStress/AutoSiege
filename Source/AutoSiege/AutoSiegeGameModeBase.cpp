@@ -4,23 +4,31 @@
 AAutoSiegeGameModeBase::AAutoSiegeGameModeBase(const class FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	GameStateClass = AAutoSiegeGameStateBase::StaticClass();
 	// Override C++ GameStateBase with the Blueprint
 	const ConstructorHelpers::FClassFinder<AAutoSiegeGameStateBase> BlueprintGameStateBase(TEXT("Class'/Game/BP_AutoSiegeGameStateBase.BP_AutoSiegeGameStateBase_C'"));
 	if (BlueprintGameStateBase.Class != nullptr)
 	{
 		GameStateClass = BlueprintGameStateBase.Class;
 	}	
-	
-	PlayerControllerClass = AAutoSiegePlayerController::StaticClass();
-	PlayerStateClass = AAutoSiegePlayerState::StaticClass();
-	HUDClass = AAutoSiegeHUD::StaticClass();
 
+	PlayerControllerClass = AAutoSiegePlayerController::StaticClass();
 	// Override C++ PlayerController with the Blueprint
 	const ConstructorHelpers::FClassFinder<AAutoSiegePlayerController> BlueprintPlayerController(TEXT("Class'/Game/BP_AutoSiegePlayerController.BP_AutoSiegePlayerController_C'"));
 	if (BlueprintPlayerController.Class != nullptr)
 	{
 		PlayerControllerClass = BlueprintPlayerController.Class;
 	}
+
+	PlayerStateClass = AAutoSiegePlayerState::StaticClass();
+	// Override C++ PlayerState with the Blueprint
+	const ConstructorHelpers::FClassFinder<AAutoSiegePlayerState> BlueprintPlayerState(TEXT("Class'/Game/BP_AutoSiegePlayerState.BP_AutoSiegePlayerState_C'"));
+	if (BlueprintPlayerState.Class != nullptr)
+	{
+		PlayerStateClass = BlueprintPlayerState.Class;
+	}
+
+	HUDClass = AAutoSiegeHUD::StaticClass();
 	
 	static ConstructorHelpers::FObjectFinder<UDataTable> HeroDataObject(TEXT("DataTable'/Game/Data/Hero_DataTable.Hero_DataTable'"));
 	if (HeroDataObject.Succeeded())

@@ -11,22 +11,23 @@ class AUTOSIEGE_API AAutoSiegePlayerState : public APlayerState
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(Replicated)
+	UPROPERTY(BlueprintReadOnly, Replicated)
 	int PlayerIndex;
 
-	UPROPERTY(Replicated)
 	FName Hero;
 
-	UPROPERTY(Replicated)
-	uint32 Gold;
+	int32 Gold;
 
-	uint32 ShopTier;
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing=OnRep_ShopTier)
+	int32 ShopTier;
 
-	UPROPERTY(Replicated)
-	uint32 ShopUpgradePrice;
+	int32 ShopUpgradePrice;
 
 	TArray<int32> ShopCards;
 
 	bool ShopFrozen = false;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnRep_ShopTier();
 
 };

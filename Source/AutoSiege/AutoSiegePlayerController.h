@@ -44,7 +44,7 @@ public:
 	void BP_PresentHeroes(const TArray<FName>& Heroes);
 
 
-	UFUNCTION(Server, Reliable, BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_SelectHero(const FName HeroName);
 
 	UFUNCTION(Client, Reliable)
@@ -68,7 +68,7 @@ public:
 	void BP_BeginShop(const int32 Gold, const TArray<int32>& Cards);
 
 
-	UFUNCTION(Server, Reliable)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_UpgradeShopTier();
 
 	UFUNCTION(Client, Reliable)
@@ -78,7 +78,7 @@ public:
 	void BP_UpgradeShopTier(const int32 NewShopTier);
 
 
-	UFUNCTION(Server, Reliable)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_ToggleFreezeShop();
 
 	UFUNCTION(Client, Reliable)
@@ -88,7 +88,7 @@ public:
 	void BP_ToggleFreezeShop(const bool IsShopFrozen);
 
 
-	UFUNCTION(Server, Reliable)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void Server_RefreshShop();
 
 	UFUNCTION(Client, Reliable)
