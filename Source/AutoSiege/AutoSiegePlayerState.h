@@ -21,6 +21,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing=OnRep_ShopTier)
 	int32 ShopTier;
 
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing=OnRep_ShopUpgradePrice)
 	int32 ShopUpgradePrice;
 
 	TArray<int32> ShopCards;
@@ -29,5 +30,8 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnRep_ShopTier();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnRep_ShopUpgradePrice();
 
 };

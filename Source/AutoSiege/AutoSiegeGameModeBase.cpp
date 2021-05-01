@@ -133,6 +133,8 @@ void AAutoSiegeGameModeBase::CheckAllPlayersReady()
 			return;
 	}
 
+	GetWorldTimerManager().ClearTimer(PlayerReadyTimerHandle);
+	
 	for (auto PlayerController : PlayerControllerArray)
 	{
 		const TArray<FName> Cards;
@@ -200,7 +202,6 @@ void AAutoSiegeGameModeBase::PlayerReadyTimerCountdown()
 
 	if (GameState_Ref->RoundTimer <= 0.f)
 	{
-		GetWorldTimerManager().ClearTimer(PlayerReadyTimerHandle);
 		AllowPlayerReady = false;
 
 		for (int32 i = 0; i < GameState_Ref->TotalNumberOfPlayers; i++)
