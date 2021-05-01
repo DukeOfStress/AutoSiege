@@ -7,6 +7,7 @@
 #include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerController.h"
 #include "AutoSiegePlayerState.h"
+#include "Card.h"
 #include "AutoSiegeGameModeBase.generated.h"
 
 USTRUCT(BlueprintType)
@@ -25,6 +26,9 @@ struct FHero : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString Description;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UTexture* Texture;
 };
 
 USTRUCT(BlueprintType)
@@ -34,6 +38,39 @@ struct FCardData : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FName Name;
+};
+
+USTRUCT(BlueprintType)
+struct FPlayerCard
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 UID;
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 BaseCardID;
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 Power;
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 Health;
+
+	UPROPERTY(BlueprintReadWrite)
+	ACard* CardActor;
+};
+
+USTRUCT(BlueprintType)
+struct FPlayerHero
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly)
+	FName HeroName;
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 Health;
 };
 
 UCLASS()
