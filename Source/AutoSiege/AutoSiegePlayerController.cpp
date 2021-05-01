@@ -18,6 +18,48 @@ void AAutoSiegePlayerController::BeginPlay()
 	PlayerState_Ref = GetPlayerState<AAutoSiegePlayerState>();
 }
 
+TArray<int32> AAutoSiegePlayerController::RefreshShopCards()
+{
+	// TODO: Handle frozen shop use case.
+	
+	int32 MaximumAllowedCards;
+	switch (PlayerState_Ref->ShopTier)
+	{
+	    case 2:
+	    case 3:
+    		MaximumAllowedCards = 4;
+    		break;
+	    case 4:
+	    case 5:
+    		MaximumAllowedCards = 5;
+    		break;
+	    case 6:
+    		MaximumAllowedCards = 6;
+    		break;
+	    case 1:
+	    default:
+    		MaximumAllowedCards = 3;
+    		break;
+	}
+
+	if (!PlayerState_Ref->ShopFrozen)
+	{
+		PlayerState_Ref->ShopCards.Empty();
+		PlayerState_Ref->ShopFrozen = false;
+	}
+
+	if (PlayerState_Ref->ShopCards.Num() < MaximumAllowedCards)
+	{
+	    const int32 CardsToDraw = MaximumAllowedCards - PlayerState_Ref->ShopCards.Num();
+	    const TArray<int32> NewCards = GameMode_Ref->GetCardsFromPool(PlayerState_Ref->ShopTier, CardsToDraw);
+
+	    PlayerState_Ref->ShopCards.Append(NewCards);
+	}
+
+	return PlayerState_Ref->ShopCards;
+}
+
+
 void AAutoSiegePlayerController::Server_SelectHero_Implementation(const FName HeroName)
 {
 	if (!GameMode_Ref->AllowPlayerReady)
@@ -125,4 +167,21 @@ void AAutoSiegePlayerController::Client_ToggleFreezeShop_Implementation(const bo
 		return;
 
 	BP_ToggleFreezeShop(IsShopFrozen);
+}
+
+void AAutoSiegePlayerController::Server_RefreshShop_Implementation()
+{
+	if (!HasAuthority())
+		return;
+
+	RefreshShopCards();
+	Client_RefreshShop(PlayerState_Ref->ShopCards, PlayerState_Ref->ShopFrozen);
+}
+
+void AAutoSiegePlayerController::Client_RefreshShop_Implementation(const TArray<int32>& Cards, const bool IsShopFrozen)
+{
+	if (HasAuthority())
+		return;
+
+	BP_RefreshShop(Cards, IsShopFrozen);
 }

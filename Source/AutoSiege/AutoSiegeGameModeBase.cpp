@@ -145,36 +145,10 @@ void AAutoSiegeGameModeBase::TriggerShopPhase()
 	
 	for (auto PlayerController : PlayerControllerArray)
 	{
-		int32 MaximumAllowedCards;
-		switch (PlayerController->PlayerState_Ref->ShopTier)
-		{
-			case 2:
-			case 3:
-				MaximumAllowedCards = 4;
-				break;
-			case 4:
-			case 5:
-				MaximumAllowedCards = 5;
-				break;
-			case 6:
-				MaximumAllowedCards = 6;
-				break;
-			case 1:
-			default:
-				MaximumAllowedCards = 3;
-				break;
-		}
-
-		if (PlayerController->PlayerState_Ref->ShopCards.Num() < MaximumAllowedCards)
-		{
-			const int32 CardsToDraw = MaximumAllowedCards - PlayerController->PlayerState_Ref->ShopCards.Num();
-			const TArray<int32> NewCards = GetCardsFromPool(PlayerController->PlayerState_Ref->ShopTier, CardsToDraw);
-
-			PlayerController->PlayerState_Ref->ShopCards.Append(NewCards);
-		}
+		auto Cards = PlayerController->RefreshShopCards();
 
 		PlayerController->PlayerState_Ref->Gold = RoundGold;
-		PlayerController->Client_BeginShop(RoundGold, PlayerController->PlayerState_Ref->ShopCards);
+		PlayerController->Client_BeginShop(RoundGold, Cards);
 	}
 }
 

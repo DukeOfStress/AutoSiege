@@ -33,6 +33,8 @@ public:
 	AAutoSiegePlayerState* PlayerState_Ref;
 
 	bool IsPlayerReady = false;
+	
+	TArray<int32> RefreshShopCards();
 
 	
 	UFUNCTION(Client, Reliable)
@@ -84,6 +86,16 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void BP_ToggleFreezeShop(const bool IsShopFrozen);
+
+
+	UFUNCTION(Server, Reliable)
+	void Server_RefreshShop();
+
+	UFUNCTION(Client, Reliable)
+	void Client_RefreshShop(const TArray<int32>& Cards, const bool IsShopFrozen);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_RefreshShop(const TArray<int32>& Cards, const bool IsShopFrozen);
 };
 
 /*
