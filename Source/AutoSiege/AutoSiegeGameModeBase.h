@@ -25,10 +25,10 @@ struct FHero : public FTableRowBase
 	UMaterial* Material;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString Description;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UTexture* Texture;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString Description;
 };
 
 USTRUCT(BlueprintType)
