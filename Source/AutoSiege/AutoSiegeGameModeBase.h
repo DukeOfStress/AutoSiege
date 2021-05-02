@@ -7,7 +7,6 @@
 #include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerController.h"
 #include "AutoSiegePlayerState.h"
-#include "Card.h"
 #include "AutoSiegeGameModeBase.generated.h"
 
 USTRUCT(BlueprintType)
@@ -38,27 +37,18 @@ struct FCardData : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FName Name;
-};
 
-USTRUCT(BlueprintType)
-struct FPlayerCard
-{
-	GENERATED_BODY()
-
-	UPROPERTY(BlueprintReadOnly)
-	int32 UID;
-
-	UPROPERTY(BlueprintReadOnly)
-	int32 BaseCardID;
-
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 Power;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 Health;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UMaterial* Material;
 
-	UPROPERTY(BlueprintReadWrite)
-	ACard* CardActor;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString Description;
 };
 
 USTRUCT(BlueprintType)
@@ -102,8 +92,10 @@ public:
 	void CheckAllPlayersReady();
 	void TriggerShopPhase();
 
-	TArray<int32> GetCardsFromPool(int32 MaxTier, int32 NumberOfCards);
-	void ReturnCardsToPool(TArray<int32> CardIDs);
+	TArray<FPlayerCard> GetCardsFromPool(int32 MaxTier,  int32 NumberOfCards);
+	void ReturnCardsToPool(TArray<FPlayerCard> PlayerCards);
+
+	int32 GenerateUID();
 
 private:
 	UPROPERTY()
@@ -113,6 +105,8 @@ private:
 	UPROPERTY()
 	UDataTable* CardDataTable;
 	TArray<TArray<int32>> CardPool;
+
+	int32 UIDCounter = 0;
 
 	void PlayerReadyTimerCountdown();
 

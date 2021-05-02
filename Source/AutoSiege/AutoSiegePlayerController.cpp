@@ -18,10 +18,8 @@ void AAutoSiegePlayerController::BeginPlay()
 	PlayerState_Ref = GetPlayerState<AAutoSiegePlayerState>();
 }
 
-TArray<int32> AAutoSiegePlayerController::RefreshShopCards()
+TArray<FPlayerCard> AAutoSiegePlayerController::RefreshShopCards()
 {
-	// TODO: Handle frozen shop use case.
-	
 	int32 MaximumAllowedCards;
 	switch (PlayerState_Ref->ShopTier)
 	{
@@ -51,9 +49,9 @@ TArray<int32> AAutoSiegePlayerController::RefreshShopCards()
 	if (PlayerState_Ref->ShopCards.Num() < MaximumAllowedCards)
 	{
 	    const int32 CardsToDraw = MaximumAllowedCards - PlayerState_Ref->ShopCards.Num();
-	    const TArray<int32> NewCards = GameMode_Ref->GetCardsFromPool(PlayerState_Ref->ShopTier, CardsToDraw);
+	    const TArray<FPlayerCard> NewPlayerCards = GameMode_Ref->GetCardsFromPool(PlayerState_Ref->ShopTier, CardsToDraw);
 
-	    PlayerState_Ref->ShopCards.Append(NewCards);
+	    PlayerState_Ref->ShopCards.Append(NewPlayerCards);
 	}
 
 	return PlayerState_Ref->ShopCards;
@@ -102,12 +100,12 @@ void AAutoSiegePlayerController::Client_AllPlayersReady_Implementation(const TAr
 	BP_AllPlayersReady(Heroes);
 }
 
-void AAutoSiegePlayerController::Client_BeginShop_Implementation(const int32 Gold, const TArray<int32>& Cards)
+void AAutoSiegePlayerController::Client_BeginShop_Implementation(const int32 Gold, const TArray<FPlayerCard>& PlayerCards)
 {
 	if (HasAuthority())
 		return;
 
-	BP_BeginShop(Gold, Cards);
+	BP_BeginShop(Gold, PlayerCards);
 }
 
 void AAutoSiegePlayerController::Server_UpgradeShopTier_Implementation()
@@ -178,10 +176,10 @@ void AAutoSiegePlayerController::Server_RefreshShop_Implementation()
 	Client_RefreshShop(PlayerState_Ref->ShopCards, PlayerState_Ref->ShopFrozen);
 }
 
-void AAutoSiegePlayerController::Client_RefreshShop_Implementation(const TArray<int32>& Cards, const bool IsShopFrozen)
+void AAutoSiegePlayerController::Client_RefreshShop_Implementation(const TArray<FPlayerCard>& PlayerCards, const bool IsShopFrozen)
 {
 	if (HasAuthority())
 		return;
 
-	BP_RefreshShop(Cards, IsShopFrozen);
+	BP_RefreshShop(PlayerCards, IsShopFrozen);
 }

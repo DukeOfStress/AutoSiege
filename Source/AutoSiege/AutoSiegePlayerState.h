@@ -1,6 +1,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "FPlayerCard.h"
 #include "GameFramework/PlayerState.h"
 #include "AutoSiegePlayerState.generated.h"
 
@@ -24,7 +26,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing=OnRep_ShopUpgradePrice)
 	int32 ShopUpgradePrice;
 
-	TArray<int32> ShopCards;
+	TArray<FPlayerCard> ShopCards;
 
 	bool ShopFrozen = false;
 

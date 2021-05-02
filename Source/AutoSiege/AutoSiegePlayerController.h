@@ -1,10 +1,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "GameFramework/PlayerController.h"
 #include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerState.h"
 #include "AutoSiegeUserWidget.h"
+#include "FPlayerCard.h"
 #include "AutoSiegePlayerController.generated.h"
 
 // Forward declaration to enable circular reference
@@ -34,7 +36,7 @@ public:
 
 	bool IsPlayerReady = false;
 	
-	TArray<int32> RefreshShopCards();
+	TArray<FPlayerCard> RefreshShopCards();
 
 	
 	UFUNCTION(Client, Reliable)
@@ -62,10 +64,10 @@ public:
 
 	
 	UFUNCTION(Client, Reliable)
-	void Client_BeginShop(const int32 Gold, const TArray<int32>& Cards);
+	void Client_BeginShop(const int32 Gold, const TArray<FPlayerCard>& PlayerCards);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_BeginShop(const int32 Gold, const TArray<int32>& Cards);
+	void BP_BeginShop(const int32 Gold, const TArray<FPlayerCard>& PlayerCards);
 
 
 	UFUNCTION(BlueprintCallable, Server, Reliable)
@@ -92,10 +94,10 @@ public:
 	void Server_RefreshShop();
 
 	UFUNCTION(Client, Reliable)
-	void Client_RefreshShop(const TArray<int32>& Cards, const bool IsShopFrozen);
+	void Client_RefreshShop(const TArray<FPlayerCard>& PlayerCards, const bool IsShopFrozen);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_RefreshShop(const TArray<int32>& Cards, const bool IsShopFrozen);
+	void BP_RefreshShop(const TArray<FPlayerCard>& PlayerCards, const bool IsShopFrozen);
 };
 
 /*

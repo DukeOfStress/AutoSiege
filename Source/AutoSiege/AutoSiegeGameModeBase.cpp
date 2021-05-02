@@ -1,4 +1,7 @@
 #include "AutoSiegeGameModeBase.h"
+
+#include <string>
+
 #include "AutoSiegeHUD.h"
 
 AAutoSiegeGameModeBase::AAutoSiegeGameModeBase(const class FObjectInitializer& ObjectInitializer)
@@ -155,19 +158,19 @@ void AAutoSiegeGameModeBase::TriggerShopPhase()
 	
 	for (auto PlayerController : PlayerControllerArray)
 	{
-		auto Cards = PlayerController->RefreshShopCards();
+		auto PlayerCards = PlayerController->RefreshShopCards();
 
 		PlayerController->PlayerState_Ref->Gold = RoundGold;
-		PlayerController->Client_BeginShop(RoundGold, Cards);
+		PlayerController->Client_BeginShop(RoundGold, PlayerCards);
 	}
 }
 
-TArray<int32> AAutoSiegeGameModeBase::GetCardsFromPool(const int32 MaxTier, const int32 NumberOfCards)
+TArray<FPlayerCard> AAutoSiegeGameModeBase::GetCardsFromPool(const int32 MaxTier, const int32 NumberOfCards)
 {
-	TArray<int32> CardIDs;
+	TArray<FPlayerCard> PlayerCards;
 
 	if (MaxTier < 0 || MaxTier > 5)
-		return CardIDs;
+		return PlayerCards;
 
 	TArray<int32> TempPool = {};
 	for (int32 i = 0; i < MaxTier; i++)
@@ -181,20 +184,38 @@ TArray<int32> AAutoSiegeGameModeBase::GetCardsFromPool(const int32 MaxTier, cons
 	for (int32 i = 0; i < NumberOfCards; i++)
 	{
 		const int32 RandomIndex = FMath::RandRange(0, TempPool.Num() - 1);
-		CardIDs.Add(TempPool[RandomIndex]);
+		const int32 BaseCardID = TempPool[RandomIndex];
+		const FName BaseCardName = static_cast<FName>(FString::FromInt(BaseCardID));
+
+		const FCardData* BaseCardData = CardDataTable->FindRow<FCardData>(BaseCardName, "");
+		
+		FPlayerCard PlayerCard = {
+			GetUniqueID(),
+			BaseCardID,
+			BaseCardData->Name,
+			BaseCardData->Power,
+			BaseCardData->Health
+		};
+		PlayerCards.Add(PlayerCard);
 		TempPool.RemoveAt(RandomIndex);
 	}
 
-	return CardIDs;
+	return PlayerCards;
 }
 
-void AAutoSiegeGameModeBase::ReturnCardsToPool(TArray<int32> CardIDs)
+void AAutoSiegeGameModeBase::ReturnCardsToPool(TArray<FPlayerCard> PlayerCards)
 {
-	for (int32 i = 0; i < CardIDs.Num(); i++)
+	for (auto PlayerCard: PlayerCards)
 	{
-		CardPool[CardIDs[i] / 512].Add(CardIDs[i]);
+		CardPool[PlayerCard.BaseCardID / 512].Add(PlayerCard.BaseCardID);
 	}
 }
+
+int32 AAutoSiegeGameModeBase::GenerateUID()
+{
+	return UIDCounter++;
+}
+
 
 void AAutoSiegeGameModeBase::PlayerReadyTimerCountdown()
 {
