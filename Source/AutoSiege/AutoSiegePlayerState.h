@@ -23,7 +23,6 @@ public:
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing=OnRep_ShopTier)
 	int32 ShopTier;
 
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing=OnRep_ShopUpgradePrice)
 	int32 ShopUpgradePrice;
 
 	TArray<FPlayerCard> ShopCards;

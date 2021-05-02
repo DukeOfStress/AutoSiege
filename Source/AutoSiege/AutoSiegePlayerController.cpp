@@ -1,5 +1,6 @@
 #include "AutoSiegePlayerController.h"
 #include "AutoSiegeGameModeBase.h"
+#include "ISourceControlProvider.h"
 #include "Portrait.h"
 
 AAutoSiegePlayerController::AAutoSiegePlayerController()
@@ -42,6 +43,7 @@ TArray<FPlayerCard> AAutoSiegePlayerController::RefreshShopCards()
 
 	if (!PlayerState_Ref->ShopFrozen)
 	{
+		GameMode_Ref->ReturnCardsToPool(PlayerState_Ref->ShopCards);
 		PlayerState_Ref->ShopCards.Empty();
 	}
 
@@ -114,8 +116,10 @@ void AAutoSiegePlayerController::Server_UpgradeShopTier_Implementation()
 	if (!HasAuthority())
 		return;
 
+	bool Succeeded = false;
 	if (PlayerState_Ref->Gold >= PlayerState_Ref->ShopUpgradePrice)
 	{
+		Succeeded = true;
 		PlayerState_Ref->Gold -= PlayerState_Ref->ShopUpgradePrice;
 		PlayerState_Ref->ShopTier++;
 
@@ -140,15 +144,15 @@ void AAutoSiegePlayerController::Server_UpgradeShopTier_Implementation()
 		}
 	}
 
-	Client_UpgradeShopTier(PlayerState_Ref->ShopTier, PlayerState_Ref->ShopUpgradePrice);
+	Client_UpgradeShopTier(Succeeded, PlayerState_Ref->ShopTier, PlayerState_Ref->ShopUpgradePrice, PlayerState_Ref->Gold);
 }
 
-void AAutoSiegePlayerController::Client_UpgradeShopTier_Implementation(const int32 NewShopTier, const int32 NewShopUpgradePrice)
+void AAutoSiegePlayerController::Client_UpgradeShopTier_Implementation(const bool Succeeded, const int32 NewShopTier, const int32 NewShopUpgradePrice, const int32 NewGold)
 {
 	if (HasAuthority())
 		return;
 
-	BP_UpgradeShopTier(NewShopTier, NewShopUpgradePrice);
+	BP_UpgradeShopTier(Succeeded, NewShopTier, NewShopUpgradePrice, NewGold);
 }
 
 void AAutoSiegePlayerController::Server_ToggleFreezeShop_Implementation()
@@ -173,14 +177,21 @@ void AAutoSiegePlayerController::Server_RefreshShop_Implementation()
 	if (!HasAuthority())
 		return;
 
-	RefreshShopCards();
-	Client_RefreshShop(PlayerState_Ref->ShopCards, PlayerState_Ref->ShopFrozen);
+	bool Succeeded = false;
+	if (PlayerState_Ref->Gold >= 1)
+	{
+		Succeeded = true;
+		PlayerState_Ref->Gold -= 1;
+		RefreshShopCards();
+	}
+
+	Client_RefreshShop(Succeeded, PlayerState_Ref->ShopCards, PlayerState_Ref->ShopFrozen, PlayerState_Ref->Gold);
 }
 
-void AAutoSiegePlayerController::Client_RefreshShop_Implementation(const TArray<FPlayerCard>& PlayerCards, const bool IsShopFrozen)
+void AAutoSiegePlayerController::Client_RefreshShop_Implementation(const bool Succeeded, const TArray<FPlayerCard>& NewCards, const bool IsShopFrozen, const int32 NewGold)
 {
 	if (HasAuthority())
 		return;
 
-	BP_RefreshShop(PlayerCards, IsShopFrozen);
+	BP_RefreshShop(Succeeded, NewCards, IsShopFrozen, NewGold);
 }

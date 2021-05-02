@@ -155,6 +155,8 @@ void AAutoSiegeGameModeBase::TriggerShopPhase()
 	int32 RoundGold = 2 + GameState_Ref->RoundNumber;
 	if (RoundGold > 10)
 		RoundGold = 10;
+
+RoundGold = 10;
 	
 	for (auto PlayerController : PlayerControllerArray)
 	{

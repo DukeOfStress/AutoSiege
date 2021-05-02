@@ -7,5 +7,4 @@ void AAutoSiegePlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     DOREPLIFETIME(AAutoSiegePlayerState, PlayerIndex);
     DOREPLIFETIME(AAutoSiegePlayerState, ShopTier);
-    DOREPLIFETIME(AAutoSiegePlayerState, ShopUpgradePrice);
 }

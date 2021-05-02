@@ -74,10 +74,10 @@ public:
 	void Server_UpgradeShopTier();
 
 	UFUNCTION(Client, Reliable)
-	void Client_UpgradeShopTier(const int32 NewShopTier, const int32 NewShopUpgradePrice);
+	void Client_UpgradeShopTier(const bool Succeeded, const int32 NewShopTier, const int32 NewShopUpgradePrice, const int32 NewGold);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_UpgradeShopTier(const int32 NewShopTier, const int32 NewShopUpgradePrice);
+	void BP_UpgradeShopTier(const bool Succeeded, const int32 NewShopTier, const int32 NewShopUpgradePrice, const int32 NewGold);
 
 
 	UFUNCTION(BlueprintCallable, Server, Reliable)
@@ -94,10 +94,10 @@ public:
 	void Server_RefreshShop();
 
 	UFUNCTION(Client, Reliable)
-	void Client_RefreshShop(const TArray<FPlayerCard>& PlayerCards, const bool IsShopFrozen);
+	void Client_RefreshShop(const bool Succeeded, const TArray<FPlayerCard>& NewCards, const bool IsShopFrozen, const int32 NewGold);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_RefreshShop(const TArray<FPlayerCard>& PlayerCards, const bool IsShopFrozen);
+	void BP_RefreshShop(const bool Succeeded, const TArray<FPlayerCard>& NewCards, const bool IsShopFrozen, const int32 NewGold);
 };
 
 /*
