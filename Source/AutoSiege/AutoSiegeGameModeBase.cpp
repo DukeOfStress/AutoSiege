@@ -190,7 +190,7 @@ TArray<FPlayerCard> AAutoSiegeGameModeBase::GetCardsFromPool(const int32 MaxTier
 		const FCardData* BaseCardData = CardDataTable->FindRow<FCardData>(BaseCardName, "");
 		
 		FPlayerCard PlayerCard = {
-			GetUniqueID(),
+			GenerateUID(),
 			BaseCardID,
 			BaseCardData->Name,
 			BaseCardData->Power,
