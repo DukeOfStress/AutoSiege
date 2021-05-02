@@ -43,8 +43,9 @@ TArray<FPlayerCard> AAutoSiegePlayerController::RefreshShopCards()
 	if (!PlayerState_Ref->ShopFrozen)
 	{
 		PlayerState_Ref->ShopCards.Empty();
-		PlayerState_Ref->ShopFrozen = false;
 	}
+
+	PlayerState_Ref->ShopFrozen = false;
 
 	if (PlayerState_Ref->ShopCards.Num() < MaximumAllowedCards)
 	{
