@@ -74,10 +74,10 @@ public:
 	void Server_UpgradeShopTier();
 
 	UFUNCTION(Client, Reliable)
-	void Client_UpgradeShopTier(const int32 NewShopTier);
+	void Client_UpgradeShopTier(const int32 NewShopTier, const int32 NewShopUpgradePrice);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_UpgradeShopTier(const int32 NewShopTier);
+	void BP_UpgradeShopTier(const int32 NewShopTier, const int32 NewShopUpgradePrice);
 
 
 	UFUNCTION(BlueprintCallable, Server, Reliable)

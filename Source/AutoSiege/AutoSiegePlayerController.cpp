@@ -140,15 +140,15 @@ void AAutoSiegePlayerController::Server_UpgradeShopTier_Implementation()
 		}
 	}
 
-	Client_UpgradeShopTier(PlayerState_Ref->ShopTier);
+	Client_UpgradeShopTier(PlayerState_Ref->ShopTier, PlayerState_Ref->ShopUpgradePrice);
 }
 
-void AAutoSiegePlayerController::Client_UpgradeShopTier_Implementation(const int32 NewShopTier)
+void AAutoSiegePlayerController::Client_UpgradeShopTier_Implementation(const int32 NewShopTier, const int32 NewShopUpgradePrice)
 {
 	if (HasAuthority())
 		return;
 
-	BP_UpgradeShopTier(NewShopTier);
+	BP_UpgradeShopTier(NewShopTier, NewShopUpgradePrice);
 }
 
 void AAutoSiegePlayerController::Server_ToggleFreezeShop_Implementation()
