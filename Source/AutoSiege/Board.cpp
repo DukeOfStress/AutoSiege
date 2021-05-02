@@ -3,4 +3,5 @@
 ABoard::ABoard()
 {
 	PrimaryActorTick.bCanEverTick = false;
+	//bCastDynamicShadow = false;
 }

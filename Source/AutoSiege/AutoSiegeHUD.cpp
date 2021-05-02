@@ -1,20 +1,14 @@
 #include "AutoSiegeHUD.h"
-
 #include "UObject/ConstructorHelpers.h"
 
 AAutoSiegeHUD::AAutoSiegeHUD()
 {
-
-	static ConstructorHelpers::FClassFinder<UUserWidget> ConnectedPlayersObj(TEXT
-	("WidgetBlueprint'/Game/UI/AutoSiegeUserWidget'"));
-
+	static ConstructorHelpers::FClassFinder<UUserWidget> ConnectedPlayersObj(TEXT("WidgetBlueprint'/Game/UI/BP_AutoSiegeUserWidget'"));
 	HUDWidgetClass = ConnectedPlayersObj.Class;
-
 }
 
 void AAutoSiegeHUD::BeginPlay()
 {
-
 	Super::BeginPlay();
 
 	if ( HUDWidgetClass == nullptr )
@@ -24,5 +18,4 @@ void AAutoSiegeHUD::BeginPlay()
 
 	if ( CurrentWidget )
 		CurrentWidget->AddToViewport();
-
 }
