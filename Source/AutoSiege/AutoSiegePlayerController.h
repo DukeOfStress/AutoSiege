@@ -94,10 +94,10 @@ public:
 	void Server_RefreshShop();
 
 	UFUNCTION(Client, Reliable)
-	void Client_RefreshShop(const bool Succeeded, const TArray<FPlayerCard>& NewCards, const bool IsShopFrozen, const int32 NewGold);
+	void Client_RefreshShop(const bool Succeeded, const TArray<FPlayerCard>& NewCards, const int32 NewGold);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_RefreshShop(const bool Succeeded, const TArray<FPlayerCard>& NewCards, const bool IsShopFrozen, const int32 NewGold);
+	void BP_RefreshShop(const bool Succeeded, const TArray<FPlayerCard>& NewCards, const int32 NewGold);
 };
 
 /*

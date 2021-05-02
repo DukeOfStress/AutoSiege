@@ -177,6 +177,8 @@ void AAutoSiegePlayerController::Server_RefreshShop_Implementation()
 	if (!HasAuthority())
 		return;
 
+	PlayerState_Ref->ShopFrozen = false;
+
 	bool Succeeded = false;
 	if (PlayerState_Ref->Gold >= 1)
 	{
@@ -185,13 +187,13 @@ void AAutoSiegePlayerController::Server_RefreshShop_Implementation()
 		RefreshShopCards();
 	}
 
-	Client_RefreshShop(Succeeded, PlayerState_Ref->ShopCards, PlayerState_Ref->ShopFrozen, PlayerState_Ref->Gold);
+	Client_RefreshShop(Succeeded, PlayerState_Ref->ShopCards, PlayerState_Ref->Gold);
 }
 
-void AAutoSiegePlayerController::Client_RefreshShop_Implementation(const bool Succeeded, const TArray<FPlayerCard>& NewCards, const bool IsShopFrozen, const int32 NewGold)
+void AAutoSiegePlayerController::Client_RefreshShop_Implementation(const bool Succeeded, const TArray<FPlayerCard>& NewCards, const int32 NewGold)
 {
 	if (HasAuthority())
 		return;
 
-	BP_RefreshShop(Succeeded, NewCards, IsShopFrozen, NewGold);
+	BP_RefreshShop(Succeeded, NewCards, NewGold);
 }
