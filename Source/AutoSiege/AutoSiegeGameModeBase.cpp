@@ -152,18 +152,79 @@ void AAutoSiegeGameModeBase::TriggerShopPhase()
 {
 	GameState_Ref->CurrentStage = GameStage::Shop;
 
+	GameState_Ref->MatchUps.Reset();
+
+	TArray<int32> AvailableHeroes;
+	bool PlayerHasDied = false;
+	int32 HighestDeadPlayerRank = 9999;
+	int32 HighestDeadPlayerId = 9999;
+	for (auto PlayerState : PlayerStateArray)
+	{
+		if (PlayerState->Health > 0)
+		{
+			AvailableHeroes.Add(PlayerState->PlayerIndex);
+		}
+		else
+		{
+			if (PlayerHasDied)
+			{
+				if (PlayerState->Rank < HighestDeadPlayerRank)
+				{
+					HighestDeadPlayerId = PlayerState->PlayerIndex;
+					HighestDeadPlayerRank = PlayerState->Rank;
+				}
+			}
+			else
+			{
+				PlayerHasDied = true;
+				HighestDeadPlayerId = PlayerState->PlayerIndex;
+				HighestDeadPlayerRank = PlayerState->Rank;
+			}
+		}
+	}
+
+	if (AvailableHeroes.Num() % 2 != 0)
+	{
+		AvailableHeroes.Add(HighestDeadPlayerId);
+	}
+	
+	while (AvailableHeroes.Num() > 0)
+	{
+		FMatchUp MatchUp;
+
+		int32 RandomIndex = FMath::RandRange(0, AvailableHeroes.Num() - 1);
+		MatchUp.Player1 = AvailableHeroes[RandomIndex];
+		AvailableHeroes.RemoveAt(RandomIndex);
+
+		RandomIndex = FMath::RandRange(0, AvailableHeroes.Num() - 1);
+		MatchUp.Player2 = AvailableHeroes[RandomIndex];
+		AvailableHeroes.RemoveAt(RandomIndex);
+
+		GameState_Ref->MatchUps.Add(MatchUp);
+	}
+
 	int32 RoundGold = 2 + GameState_Ref->RoundNumber;
 	if (RoundGold > 10)
 		RoundGold = 10;
 
-RoundGold = 10;
+	RoundGold = 10;
 	
 	for (auto PlayerController : PlayerControllerArray)
 	{
 		auto PlayerCards = PlayerController->RefreshShopCards();
 
+		int32 NextOpponent = 9999;
+		for (auto MatchUp : GameState_Ref->MatchUps)
+		{
+			if (MatchUp.Player1 == PlayerController->PlayerState_Ref->PlayerIndex)
+				NextOpponent = MatchUp.Player2;
+
+			if (MatchUp.Player2 == PlayerController->PlayerState_Ref->PlayerIndex)
+				NextOpponent = MatchUp.Player1;
+		}
+
 		PlayerController->PlayerState_Ref->Gold = RoundGold;
-		PlayerController->Client_BeginShop(RoundGold, PlayerCards);
+		PlayerController->Client_BeginShop(RoundGold, PlayerCards, NextOpponent);
 	}
 }
 
@@ -205,13 +266,29 @@ TArray<FPlayerCard> AAutoSiegeGameModeBase::GetCardsFromPool(const int32 MaxTier
 	return PlayerCards;
 }
 
-void AAutoSiegeGameModeBase::ReturnCardsToPool(TArray<FPlayerCard> PlayerCards)
+void AAutoSiegeGameModeBase::ReturnCardsToPool(const TArray<FPlayerCard> PlayerCards)
 {
 	for (auto PlayerCard: PlayerCards)
 	{
 		CardPool[PlayerCard.BaseCardID / 512].Add(PlayerCard.BaseCardID);
 	}
 }
+
+void AAutoSiegeGameModeBase::TriggerBattlePhase()
+{
+	GameState_Ref->CurrentStage = GameStage::Battle;
+
+	// TODO: Logic for auto battle
+
+	// TODO: Make matchups (this is decided before the shop phase??)
+	
+	for (auto PlayerController : PlayerControllerArray)
+	{
+		// TODO: Get the matchup relevant to the current player
+		//PlayerController->Client_ShowBattle(/**Some kind of matchup data structure, basically a queue of actions*/);
+	}
+}
+
 
 int32 AAutoSiegeGameModeBase::GenerateUID()
 {
@@ -234,7 +311,11 @@ void AAutoSiegeGameModeBase::PlayerReadyTimerCountdown()
 				// TODO: Do we want to randomize this? Or always pick the first?
 				const FName SelectedHero = HeroPool[i * 3];
 				GameState_Ref->Heroes[i] = SelectedHero;
-				PlayerControllerArray[i]->Client_HeroApproved(SelectedHero);
+
+				const FHero* Hero = HeroDataTable->FindRow<FHero>(SelectedHero, "");
+				
+				PlayerControllerArray[i]->PlayerState_Ref->Health = Hero->Health;
+				PlayerControllerArray[i]->Client_HeroApproved(SelectedHero, Hero->Health);
 			}
 		}
 

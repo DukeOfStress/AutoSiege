@@ -15,7 +15,6 @@ class AAutoSiegeGameModeBase;
 UCLASS(Blueprintable, BlueprintType)
 class AUTOSIEGE_API AAutoSiegePlayerController : public APlayerController
 {
-
 	GENERATED_BODY()
 
 public:
@@ -50,10 +49,10 @@ public:
 	void Server_SelectHero(const FName HeroName);
 
 	UFUNCTION(Client, Reliable)
-	void Client_HeroApproved(const FName HeroName);
+	void Client_HeroApproved(const FName HeroName, const int32 Health);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_HeroApproved(const FName HeroName);
+	void BP_HeroApproved(const FName HeroName, const int32 Health);
 
 
 	UFUNCTION(Client, Reliable)
@@ -64,10 +63,10 @@ public:
 
 	
 	UFUNCTION(Client, Reliable)
-	void Client_BeginShop(const int32 Gold, const TArray<FPlayerCard>& PlayerCards);
+	void Client_BeginShop(const int32 Gold, const TArray<FPlayerCard>& PlayerCards, const int32 NextOpponent);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_BeginShop(const int32 Gold, const TArray<FPlayerCard>& PlayerCards);
+	void BP_BeginShop(const int32 Gold, const TArray<FPlayerCard>& PlayerCards, const int32 NextOpponent);
 
 
 	UFUNCTION(BlueprintCallable, Server, Reliable)
@@ -128,4 +127,11 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void BP_SellCard(const bool Succeeded, const FPlayerCard CardSold, const int32 NewGold);
+
+
+	// UFUNCTION(Client, Reliable)
+	// void Client_ShowBattle();
+	//
+	// UFUNCTION(BlueprintImplementableEvent)
+	// void BP_ShowBattle();
 };

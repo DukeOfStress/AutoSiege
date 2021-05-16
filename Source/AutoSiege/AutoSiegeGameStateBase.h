@@ -13,6 +13,12 @@ enum GameStage
 	Battle
 };
 
+struct FMatchUp
+{
+	int32 Player1;
+	int32 Player2;
+};
+
 UCLASS()
 class AUTOSIEGE_API AAutoSiegeGameStateBase : public AGameStateBase
 {
@@ -25,13 +31,14 @@ public:
 	float RoundTimer = 15.f;
 
 	UPROPERTY(BlueprintReadOnly)
-	int32 TotalNumberOfPlayers = 3;
+	int32 TotalNumberOfPlayers = 4;
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Heroes)
 	TArray<FName> Heroes;
 
 	TEnumAsByte<GameStage> CurrentStage;
 
+	TArray<FMatchUp> MatchUps;
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnRep_RoundTimer();

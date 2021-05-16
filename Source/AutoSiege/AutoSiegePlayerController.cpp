@@ -70,11 +70,14 @@ void AAutoSiegePlayerController::Server_SelectHero_Implementation(const FName He
 		return;
 
 	IsPlayerReady = true;
-
-	PlayerState_Ref->Hero = HeroName;
 	GameState_Ref->Heroes[PlayerState_Ref->PlayerIndex] = HeroName;
+	
+	const FHero* Hero = GameMode_Ref->HeroDataTable->FindRow<FHero>(HeroName, "");
+				
+	PlayerState_Ref->Health = Hero->Health;
+	PlayerState_Ref->Hero = HeroName;
 
-	Client_HeroApproved(HeroName);
+	Client_HeroApproved(HeroName, Hero->Health);
 
 	GameMode_Ref->CheckAllPlayersReady();
 }
@@ -87,12 +90,12 @@ void AAutoSiegePlayerController::Client_PresentHeroes_Implementation(const TArra
 	BP_PresentHeroes(Heroes);
 }
 
-void AAutoSiegePlayerController::Client_HeroApproved_Implementation(const FName HeroName)
+void AAutoSiegePlayerController::Client_HeroApproved_Implementation(const FName HeroName, const int32 Health)
 {
 	if (HasAuthority())
 		return;
 
-	BP_HeroApproved(HeroName);
+	BP_HeroApproved(HeroName, Health);
 }
 
 void AAutoSiegePlayerController::Client_AllPlayersReady_Implementation(const TArray<FName>& Heroes)
@@ -103,12 +106,12 @@ void AAutoSiegePlayerController::Client_AllPlayersReady_Implementation(const TAr
 	BP_AllPlayersReady(Heroes);
 }
 
-void AAutoSiegePlayerController::Client_BeginShop_Implementation(const int32 Gold, const TArray<FPlayerCard>& PlayerCards)
+void AAutoSiegePlayerController::Client_BeginShop_Implementation(const int32 Gold, const TArray<FPlayerCard>& PlayerCards, const int32 NextOpponent)
 {
 	if (HasAuthority())
 		return;
 
-	BP_BeginShop(Gold, PlayerCards);
+	BP_BeginShop(Gold, PlayerCards, NextOpponent);
 }
 
 void AAutoSiegePlayerController::Server_UpgradeShopTier_Implementation()

@@ -17,6 +17,8 @@ public:
 	int PlayerIndex;
 
 	FName Hero;
+	int32 Health;
+	int32 Rank;
 
 	int32 Gold;
 

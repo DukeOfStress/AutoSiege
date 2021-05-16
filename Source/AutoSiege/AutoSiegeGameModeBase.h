@@ -89,17 +89,20 @@ public:
 	FTimerHandle PlayerReadyTimerHandle;
 	bool AllowPlayerReady = true;
 
+	UPROPERTY()
+	UDataTable* HeroDataTable;
+	
 	void CheckAllPlayersReady();
 	void TriggerShopPhase();
 
 	TArray<FPlayerCard> GetCardsFromPool(int32 MaxTier,  int32 NumberOfCards);
-	void ReturnCardsToPool(TArray<FPlayerCard> PlayerCards);
+	void ReturnCardsToPool(const TArray<FPlayerCard> PlayerCards);
+
+	void TriggerBattlePhase();
 
 	int32 GenerateUID();
-
+	
 private:
-	UPROPERTY()
-	UDataTable* HeroDataTable;
 	TArray<FName> HeroPool;
 
 	UPROPERTY()
