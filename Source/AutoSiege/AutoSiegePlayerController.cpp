@@ -284,10 +284,10 @@ void AAutoSiegePlayerController::Client_SellCard_Implementation(const bool Succe
 	BP_SellCard(Succeeded, CardSold, NewGold);
 }
 
-void AAutoSiegePlayerController::Client_ShowBattle_Implementation(const FBattle Battle)
+void AAutoSiegePlayerController::Client_ShowBattle_Implementation(const FBattleOpponent Opponent, const FBattle Battle)
 {
 	if (HasAuthority())
 		return;
 
-	BP_ShowBattle(Battle);
+	BP_ShowBattle(Opponent, Battle);
 }

@@ -100,6 +100,7 @@ public:
 
 	void TriggerBattlePhase();
 	FBattle AutoBattle(AAutoSiegePlayerState* PS1, AAutoSiegePlayerState* PS2);
+	FBattleOpponent LoadBattleOpponent(const int32 PlayerIndex);
 
 	int32 GenerateUID();
 	

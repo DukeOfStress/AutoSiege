@@ -289,21 +289,31 @@ void AAutoSiegeGameModeBase::TriggerBattlePhase()
 	GetWorldTimerManager().ClearTimer(PlayerReadyTimerHandle);
 
 	TArray<FBattle> Battles;
+	TMap<int32,FBattleOpponent> BattleOpponents;
 	for (auto MatchUp : GameState_Ref->MatchUps)
 	{
 		Battles.Add(AutoBattle(
 			PlayerStateArray[MatchUp.Player1],
 			PlayerStateArray[MatchUp.Player2]
 		));
+
+		BattleOpponents.Add(MatchUp.Player1, LoadBattleOpponent(MatchUp.Player1));
+		BattleOpponents.Add(MatchUp.Player2, LoadBattleOpponent(MatchUp.Player2));
 	}
 	
 	for (auto PlayerController : PlayerControllerArray)
 	{
 		for (auto Battle : Battles)
 		{
-			if (PlayerController->PlayerState_Ref->PlayerIndex == Battle.Player1 ||
-				PlayerController->PlayerState_Ref->PlayerIndex == Battle.Player2)
-					PlayerController->Client_ShowBattle(Battle);			
+			if (PlayerController->PlayerState_Ref->PlayerIndex == Battle.Player1)
+			{
+				PlayerController->Client_ShowBattle(BattleOpponents[Battle.Player2], Battle);
+			}
+
+			if (PlayerController->PlayerState_Ref->PlayerIndex == Battle.Player2)
+			{
+				PlayerController->Client_ShowBattle(BattleOpponents[Battle.Player1], Battle);
+			}		
 		}
 	}
 }
@@ -320,6 +330,17 @@ FBattle AAutoSiegeGameModeBase::AutoBattle(AAutoSiegePlayerState* PS1, AAutoSieg
 	return Battle;
 }
 
+FBattleOpponent AAutoSiegeGameModeBase::LoadBattleOpponent(const int32 PlayerIndex)
+{
+	FBattleOpponent Opponent;
+	Opponent.ID = PlayerIndex;
+	Opponent.Hero = PlayerStateArray[PlayerIndex]->Hero;
+	Opponent.StartingHealth = PlayerStateArray[PlayerIndex]->Health;
+	Opponent.Cards = PlayerStateArray[PlayerIndex]->BoardCards;
+
+	return Opponent;
+}
+
 
 int32 AAutoSiegeGameModeBase::GenerateUID()
 {
@@ -331,7 +352,7 @@ void AAutoSiegeGameModeBase::PlayerReadyTimerCountdown()
 {
 	GameState_Ref->RoundTimer--;
 
-	if (GameState_Ref->RoundTimer > 0.f)
+	if (GameState_Ref->RoundTimer >= 0.f)
 		return;
 
 	switch (GameState_Ref->CurrentStage)

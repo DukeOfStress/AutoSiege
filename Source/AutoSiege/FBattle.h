@@ -43,3 +43,21 @@ struct FBattle
 	UPROPERTY(BlueprintReadOnly)
 	TArray<FBattleAction> Actions;
 };
+
+USTRUCT(BlueprintType)
+struct FBattleOpponent
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 ID;
+
+	UPROPERTY(BlueprintReadOnly)
+	FName Hero;
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 StartingHealth;
+
+	UPROPERTY(BlueprintReadOnly)
+	TArray<FPlayerCard> Cards;
+};

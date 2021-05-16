@@ -131,8 +131,8 @@ public:
 
 
 	UFUNCTION(Client, Reliable)
-	void Client_ShowBattle(const FBattle Battle);
+	void Client_ShowBattle(const FBattleOpponent Opponent, const FBattle Battle);
 	
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_ShowBattle(const FBattle Battle);
+	void BP_ShowBattle(const FBattleOpponent Opponent, const FBattle Battle);
 };
