@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Containers/Array.h"
 
 #include "FPlayerCard.generated.h"
 
@@ -22,3 +23,8 @@ struct FPlayerCard
 	UPROPERTY(BlueprintReadOnly)
 	int32 Health;
 };
+
+FORCEINLINE bool operator==(const FPlayerCard& LHS, const FPlayerCard& RHS)
+{
+	return LHS.UID == RHS.UID;
+}

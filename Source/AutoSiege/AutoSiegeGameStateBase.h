@@ -4,7 +4,7 @@
 #include "GameFramework/GameStateBase.h"
 #include "AutoSiegeGameStateBase.generated.h"
 
-UENUM()
+UENUM(BlueprintType)
 enum GameStage
 {
 	PlayerJoin,

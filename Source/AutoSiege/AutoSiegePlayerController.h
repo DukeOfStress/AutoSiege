@@ -98,12 +98,34 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void BP_RefreshShop(const bool Succeeded, const TArray<FPlayerCard>& NewCards, const int32 NewGold);
+
+
+	UFUNCTION(BlueprintCallable, Server, Reliable)
+	void Server_BuyCard(const FPlayerCard CardToBuy);
+
+	UFUNCTION(Client, Reliable)
+	void Client_BuyCard(const bool Succeeded, const FPlayerCard BoughtCard, const int32 NewGold);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_BuyCard(const bool Succeeded, const FPlayerCard BoughtCard, const int32 NewGold);
+
+	
+	UFUNCTION(BlueprintCallable, Server, Reliable)
+	void Server_PlayCard(const FPlayerCard CardToPlay);
+
+	UFUNCTION(Client, Reliable)
+	void Client_PlayCard(const bool Succeeded, const FPlayerCard CardPlayed);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_PlayCard(const bool Succeeded, const FPlayerCard CardPlayed);
+
+
+	UFUNCTION(BlueprintCallable, Server, Reliable)
+	void Server_SellCard(const FPlayerCard CardToSell);
+
+	UFUNCTION(Client, Reliable)
+	void Client_SellCard(const bool Succeeded, const FPlayerCard CardSold, const int32 NewGold);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_SellCard(const bool Succeeded, const FPlayerCard CardSold, const int32 NewGold);
 };
-
-/*
-
- Player Data:
-  - Cards in lineup
-  - Cards in hand
-
-*/

@@ -197,3 +197,86 @@ void AAutoSiegePlayerController::Client_RefreshShop_Implementation(const bool Su
 
 	BP_RefreshShop(Succeeded, NewCards, NewGold);
 }
+
+void AAutoSiegePlayerController::Server_BuyCard_Implementation(const FPlayerCard CardToBuy)
+{
+	if (!HasAuthority())
+		return;
+	
+	bool Succeeded = false;
+	
+	if (PlayerState_Ref->ShopCards.Contains(CardToBuy) && PlayerState_Ref->Gold >= 3)
+	{
+		Succeeded = true;
+	 	PlayerState_Ref->Gold -= 3;
+	
+		PlayerState_Ref->ShopCards.RemoveSingle(CardToBuy);
+		PlayerState_Ref->HandCards.Add(CardToBuy);
+	}
+
+	Client_BuyCard(Succeeded, CardToBuy, PlayerState_Ref->Gold);
+}
+
+void AAutoSiegePlayerController::Client_BuyCard_Implementation(const bool Succeeded, const FPlayerCard BoughtCard, const int32 NewGold)
+{
+	if (HasAuthority())
+		return;
+
+	BP_BuyCard(Succeeded, BoughtCard, NewGold);
+}
+
+void AAutoSiegePlayerController::Server_PlayCard_Implementation(const FPlayerCard CardToPlay)
+{
+	if (!HasAuthority())
+		return;
+
+	bool Succeeded = false;
+
+	if (PlayerState_Ref->HandCards.Contains(CardToPlay))
+	{
+		Succeeded = true;
+	
+		PlayerState_Ref->HandCards.RemoveSingle(CardToPlay);
+		PlayerState_Ref->BoardCards.Add(CardToPlay);
+	}
+
+	Client_PlayCard(Succeeded, CardToPlay);
+}
+
+void AAutoSiegePlayerController::Client_PlayCard_Implementation(const bool Succeeded, const FPlayerCard CardPlayed)
+{
+	if (HasAuthority())
+		return;
+
+	BP_PlayCard(Succeeded, CardPlayed);
+}
+
+void AAutoSiegePlayerController::Server_SellCard_Implementation(const FPlayerCard CardToSell)
+{
+	if (!HasAuthority())
+		return;
+
+	bool Succeeded = false;
+
+	if (PlayerState_Ref->BoardCards.Contains(CardToSell))
+	{
+		Succeeded = true;
+
+		PlayerState_Ref->Gold++;
+		PlayerState_Ref->BoardCards.RemoveSingle(CardToSell);
+
+		TArray<FPlayerCard> CardsToSell;
+		CardsToSell.Add(CardToSell);
+		GameMode_Ref->ReturnCardsToPool(CardsToSell);
+	}
+
+	Client_SellCard(Succeeded, CardToSell, PlayerState_Ref->Gold);
+}
+
+void AAutoSiegePlayerController::Client_SellCard_Implementation(const bool Succeeded, const FPlayerCard CardSold, const int32 NewGold)
+{
+	if (HasAuthority())
+		return;
+
+	BP_SellCard(Succeeded, CardSold, NewGold);
+}

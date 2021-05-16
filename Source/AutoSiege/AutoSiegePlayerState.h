@@ -26,6 +26,8 @@ public:
 	int32 ShopUpgradePrice;
 
 	TArray<FPlayerCard> ShopCards;
+	TArray<FPlayerCard> HandCards;
+	TArray<FPlayerCard> BoardCards;
 
 	bool ShopFrozen = false;
 
