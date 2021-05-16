@@ -99,6 +99,7 @@ public:
 	void ReturnCardsToPool(const TArray<FPlayerCard> PlayerCards);
 
 	void TriggerBattlePhase();
+	FBattle AutoBattle(AAutoSiegePlayerState* PS1, AAutoSiegePlayerState* PS2);
 
 	int32 GenerateUID();
 	

@@ -151,6 +151,15 @@ void AAutoSiegeGameModeBase::CheckAllPlayersReady()
 void AAutoSiegeGameModeBase::TriggerShopPhase()
 {
 	GameState_Ref->CurrentStage = GameStage::Shop;
+	GameState_Ref->RoundTimer = 20.0f;
+	GetWorldTimerManager().SetTimer(
+		PlayerReadyTimerHandle, 
+		this, 
+		&AAutoSiegeGameModeBase::PlayerReadyTimerCountdown,
+		1.0f,
+		true,
+		2.0f
+	);
 
 	GameState_Ref->MatchUps.Reset();
 
@@ -277,16 +286,38 @@ void AAutoSiegeGameModeBase::ReturnCardsToPool(const TArray<FPlayerCard> PlayerC
 void AAutoSiegeGameModeBase::TriggerBattlePhase()
 {
 	GameState_Ref->CurrentStage = GameStage::Battle;
+	GetWorldTimerManager().ClearTimer(PlayerReadyTimerHandle);
 
-	// TODO: Logic for auto battle
-
-	// TODO: Make matchups (this is decided before the shop phase??)
+	TArray<FBattle> Battles;
+	for (auto MatchUp : GameState_Ref->MatchUps)
+	{
+		Battles.Add(AutoBattle(
+			PlayerStateArray[MatchUp.Player1],
+			PlayerStateArray[MatchUp.Player2]
+		));
+	}
 	
 	for (auto PlayerController : PlayerControllerArray)
 	{
-		// TODO: Get the matchup relevant to the current player
-		//PlayerController->Client_ShowBattle(/**Some kind of matchup data structure, basically a queue of actions*/);
+		for (auto Battle : Battles)
+		{
+			if (PlayerController->PlayerState_Ref->PlayerIndex == Battle.Player1 ||
+				PlayerController->PlayerState_Ref->PlayerIndex == Battle.Player2)
+					PlayerController->Client_ShowBattle(Battle);			
+		}
 	}
+}
+
+
+FBattle AAutoSiegeGameModeBase::AutoBattle(AAutoSiegePlayerState* PS1, AAutoSiegePlayerState* PS2)
+{
+	FBattle Battle;
+	Battle.Player1 = PS1->PlayerIndex;
+	Battle.Player2 = PS2->PlayerIndex;
+
+	// TODO: Auto battle actions
+
+	return Battle;
 }
 
 
@@ -300,25 +331,49 @@ void AAutoSiegeGameModeBase::PlayerReadyTimerCountdown()
 {
 	GameState_Ref->RoundTimer--;
 
-	if (GameState_Ref->RoundTimer <= 0.f)
+	if (GameState_Ref->RoundTimer > 0.f)
+		return;
+
+	switch (GameState_Ref->CurrentStage)
 	{
-		AllowPlayerReady = false;
-
-		for (int32 i = 0; i < GameState_Ref->TotalNumberOfPlayers; i++)
-		{
-			if (GameState_Ref->Heroes[i].IsNone())
+		case PlayerJoin:
 			{
-				// TODO: Do we want to randomize this? Or always pick the first?
-				const FName SelectedHero = HeroPool[i * 3];
-				GameState_Ref->Heroes[i] = SelectedHero;
-
-				const FHero* Hero = HeroDataTable->FindRow<FHero>(SelectedHero, "");
 				
-				PlayerControllerArray[i]->PlayerState_Ref->Health = Hero->Health;
-				PlayerControllerArray[i]->Client_HeroApproved(SelectedHero, Hero->Health);
 			}
-		}
+		break;
+		case HeroSelect:
+			{
+				AllowPlayerReady = false;
 
-		CheckAllPlayersReady();
+				for (int32 i = 0; i < GameState_Ref->TotalNumberOfPlayers; i++)
+				{
+					if (GameState_Ref->Heroes[i].IsNone())
+					{
+						// TODO: Do we want to randomize this? Or always pick the first?
+						const FName SelectedHero = HeroPool[i * 3];
+						GameState_Ref->Heroes[i] = SelectedHero;
+
+						const FHero* Hero = HeroDataTable->FindRow<FHero>(SelectedHero, "");
+				
+						PlayerControllerArray[i]->PlayerState_Ref->Health = Hero->Health;
+						PlayerControllerArray[i]->Client_HeroApproved(SelectedHero, Hero->Health);
+					}
+				}
+
+				CheckAllPlayersReady();
+			}
+		break;
+		case Shop:
+			{
+				TriggerBattlePhase();
+			}
+		break;
+		case Battle:
+			{
+				
+			}
+		break;
+		default:
+			break;
 	}
 }

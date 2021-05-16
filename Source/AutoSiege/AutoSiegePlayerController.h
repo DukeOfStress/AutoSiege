@@ -6,6 +6,7 @@
 #include "AutoSiegeGameStateBase.h"
 #include "AutoSiegePlayerState.h"
 #include "AutoSiegeUserWidget.h"
+#include "FBattle.h"
 #include "FPlayerCard.h"
 #include "AutoSiegePlayerController.generated.h"
 
@@ -129,9 +130,9 @@ public:
 	void BP_SellCard(const bool Succeeded, const FPlayerCard CardSold, const int32 NewGold);
 
 
-	// UFUNCTION(Client, Reliable)
-	// void Client_ShowBattle();
-	//
-	// UFUNCTION(BlueprintImplementableEvent)
-	// void BP_ShowBattle();
+	UFUNCTION(Client, Reliable)
+	void Client_ShowBattle(const FBattle Battle);
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_ShowBattle(const FBattle Battle);
 };
