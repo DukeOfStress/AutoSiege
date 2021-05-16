@@ -53,7 +53,7 @@ void AAutoSiegeGameModeBase::BeginPlay()
 	Super::BeginPlay();
 
 	GameState_Ref = GetGameState<AAutoSiegeGameStateBase>();
-	GameState_Ref->CurrentStage = GameStage::PlayerJoin;
+	GameState_Ref->CurrentStage = GameStage::HeroSelect;
 
 	HeroPool = HeroDataTable->GetRowNames();
 	// Shuffle HeroPool
@@ -336,11 +336,6 @@ void AAutoSiegeGameModeBase::PlayerReadyTimerCountdown()
 
 	switch (GameState_Ref->CurrentStage)
 	{
-		case PlayerJoin:
-			{
-				
-			}
-		break;
 		case HeroSelect:
 			{
 				AllowPlayerReady = false;

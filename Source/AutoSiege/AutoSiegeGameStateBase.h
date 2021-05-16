@@ -7,7 +7,6 @@
 UENUM(BlueprintType)
 enum GameStage
 {
-	PlayerJoin,
 	HeroSelect,
 	Shop,
 	Battle
