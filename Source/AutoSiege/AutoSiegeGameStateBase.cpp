@@ -1,6 +1,5 @@
 #include "AutoSiegeGameStateBase.h"
 #include "Net/UnrealNetwork.h"
-//#include "AutoSiegeHUD.h"
 #include "AutoSiegeUserWidget.h"
 
 void AAutoSiegeGameStateBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -9,4 +8,5 @@ void AAutoSiegeGameStateBase::GetLifetimeReplicatedProps(TArray<FLifetimePropert
 	
 	DOREPLIFETIME(AAutoSiegeGameStateBase, RoundTimer);
 	DOREPLIFETIME(AAutoSiegeGameStateBase, Heroes);
+	DOREPLIFETIME(AAutoSiegeGameStateBase, CurrentStage);
 }

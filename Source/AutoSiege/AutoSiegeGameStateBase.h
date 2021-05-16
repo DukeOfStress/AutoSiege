@@ -36,6 +36,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Heroes)
 	TArray<FName> Heroes;
 
+	UPROPERTY(BlueprintReadOnly, Replicated)
 	TEnumAsByte<GameStage> CurrentStage;
 
 	TArray<FMatchUp> MatchUps;
