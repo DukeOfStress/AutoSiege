@@ -1,0 +1,19 @@
+- Name: New Template
+  Guid: 7dbd434f-1ff8-472a-9ea2-36324d873f09
+  TextPositions:
+  - Name: Test@
+    Guid: ebcaeb83-722a-4086-a8e1-5fcd9522959a
+    DummyText: TEST2
+    Font: Microsoft Sans Serif, 27.75pt
+    Rectangle: 100, 500, 300, 100
+    Color: White
+    AlignHorizontal: Center
+    AlignVertical: Center
+  - Name: werw
+    Guid: aaa68adc-ebe0-487c-bc49-ccd039562b9f
+    DummyText: werwe
+    Font: Microsoft Sans Serif, 8.25pt
+    Rectangle: 0, 0, 100, 100
+    Color: Black
+    AlignHorizontal: Left
+    AlignVertical: Top
