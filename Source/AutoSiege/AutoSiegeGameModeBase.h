@@ -100,6 +100,9 @@ public:
 
 	void TriggerBattlePhase();
 	FBattle AutoBattle(AAutoSiegePlayerState* PS1, AAutoSiegePlayerState* PS2);
+	bool PlayerHasLivingCards(TArray<FPlayerCard> PlayerCards);
+	int32 GetNextLivingAttacker(TArray<FPlayerCard> PlayerCards, int32 PreviousIndex);
+	int32 GetRandomLivingCard(TArray<FPlayerCard> PlayerCards);
 	FBattleOpponent LoadBattleOpponent(const int32 PlayerIndex);
 
 	int32 GenerateUID();

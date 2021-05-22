@@ -288,46 +288,154 @@ void AAutoSiegeGameModeBase::TriggerBattlePhase()
 	GameState_Ref->CurrentStage = GameStage::Battle;
 	GetWorldTimerManager().ClearTimer(PlayerReadyTimerHandle);
 
-	TArray<FBattle> Battles;
+	TMap<int32,FBattle> Battles;
 	TMap<int32,FBattleOpponent> BattleOpponents;
 	for (auto MatchUp : GameState_Ref->MatchUps)
 	{
-		Battles.Add(AutoBattle(
+		auto Battle = AutoBattle(
 			PlayerStateArray[MatchUp.Player1],
 			PlayerStateArray[MatchUp.Player2]
-		));
-
-		BattleOpponents.Add(MatchUp.Player1, LoadBattleOpponent(MatchUp.Player1));
-		BattleOpponents.Add(MatchUp.Player2, LoadBattleOpponent(MatchUp.Player2));
+		);
+		
+		Battles.Add(MatchUp.Player1, Battle);
+		Battles.Add(MatchUp.Player2, Battle);
+		
+		BattleOpponents.Add(MatchUp.Player1, LoadBattleOpponent(MatchUp.Player2));
+		BattleOpponents.Add(MatchUp.Player2, LoadBattleOpponent(MatchUp.Player1));
 	}
 	
 	for (auto PlayerController : PlayerControllerArray)
 	{
-		for (auto Battle : Battles)
-		{
-			if (PlayerController->PlayerState_Ref->PlayerIndex == Battle.Player1)
-			{
-				PlayerController->Client_ShowBattle(BattleOpponents[Battle.Player2], Battle);
-			}
-
-			if (PlayerController->PlayerState_Ref->PlayerIndex == Battle.Player2)
-			{
-				PlayerController->Client_ShowBattle(BattleOpponents[Battle.Player1], Battle);
-			}		
-		}
+		PlayerController->Client_ShowBattle(
+			BattleOpponents[PlayerController->PlayerState_Ref->PlayerIndex],
+			Battles[PlayerController->PlayerState_Ref->PlayerIndex]
+		);
 	}
 }
 
 
 FBattle AAutoSiegeGameModeBase::AutoBattle(AAutoSiegePlayerState* PS1, AAutoSiegePlayerState* PS2)
 {
-	FBattle Battle;
-	Battle.Player1 = PS1->PlayerIndex;
-	Battle.Player2 = PS2->PlayerIndex;
+	FBattle Battle = {};
 
-	// TODO: Auto battle actions
+	int32 Player1Index = 9999;
+	int32 Player2Index = 9999;
 
-	return Battle;
+	bool IsPlayer1Turn = FMath::RandBool();
+
+	TArray<FPlayerCard> Player1Cards(PS1->BoardCards);
+	TArray<FPlayerCard> Player2Cards(PS2->BoardCards);
+	
+	bool Player1HasLivingCards = PlayerHasLivingCards(Player1Cards);
+	bool Player2HasLivingCards = PlayerHasLivingCards(Player2Cards);
+
+	while (Player1HasLivingCards && Player2HasLivingCards)
+	{
+		if (IsPlayer1Turn)
+		{
+			Player1Index = GetNextLivingAttacker(Player1Cards, Player1Index);
+			const int32 DefenderIndex = GetRandomLivingCard(Player2Cards);
+
+			Player1Cards[Player1Index].Health -= Player2Cards[DefenderIndex].Power;
+			Player2Cards[DefenderIndex].Health -= Player1Cards[Player1Index].Power;
+
+			FBattleAction BattleAction = {};
+			BattleAction.Type = CardAttacks;
+			BattleAction.CurrentPlayer = PS1->PlayerIndex;
+			BattleAction.AttackerUID = Player1Cards[Player1Index].UID;
+			BattleAction.DefenderUID = Player2Cards[DefenderIndex].UID;
+			BattleAction.NewAttackerHealth = Player1Cards[Player1Index].Health;
+			BattleAction.NewDefenderHealth = Player2Cards[DefenderIndex].Health;
+			Battle.Actions.Add(BattleAction);
+
+			IsPlayer1Turn = false;
+		}
+		else
+		{
+			Player2Index = GetNextLivingAttacker(Player2Cards, Player2Index);
+			const int32 DefenderIndex = GetRandomLivingCard(Player1Cards);
+
+			Player1Cards[DefenderIndex].Health -= Player2Cards[Player2Index].Power;
+
+			FBattleAction BattleAction = {};
+			BattleAction.Type = CardAttacks;
+			BattleAction.CurrentPlayer = PS2->PlayerIndex;
+			BattleAction.AttackerUID = Player2Cards[Player2Index].UID;
+			BattleAction.DefenderUID = Player1Cards[DefenderIndex].UID;
+			BattleAction.NewAttackerHealth = Player2Cards[Player2Index].Health;
+			BattleAction.NewDefenderHealth = Player1Cards[DefenderIndex].Health;
+			Battle.Actions.Add(BattleAction);
+
+			IsPlayer1Turn = true;	
+		}
+
+		Player1HasLivingCards = PlayerHasLivingCards(Player1Cards);
+		Player2HasLivingCards = PlayerHasLivingCards(Player2Cards);
+	}
+
+	// TODO: Log the winner and take health from the loser.
+	if (!Player1HasLivingCards && !Player2HasLivingCards)
+	{
+		// It's a draw
+		Battle.IsDraw = true;
+	}
+	else if (!Player1HasLivingCards)
+	{
+		// Player2 Won
+		PS1->Health -= 3;
+		Battle.IsDraw = false;
+		Battle.LosingPlayer = PS1->PlayerIndex;
+		Battle.NewLosingPlayerHealth = PS1->Health;
+	}
+	else if (!Player2HasLivingCards)
+	{
+		// Player1 Won
+		PS2->Health -= 3;
+		Battle.IsDraw = false;
+		Battle.LosingPlayer = PS2->PlayerIndex;
+		Battle.NewLosingPlayerHealth = PS2->Health;
+	}
+
+	return Battle; 
+}
+
+bool AAutoSiegeGameModeBase::PlayerHasLivingCards(TArray<FPlayerCard> PlayerCards)
+{
+	for (auto Card : PlayerCards)
+	{
+		if (Card.Health > 0)
+			return true;
+	}
+
+	return false;
+}
+
+int32 AAutoSiegeGameModeBase::GetNextLivingAttacker(TArray<FPlayerCard> PlayerCards, int32 PreviousIndex)
+{
+	while(true)
+	{
+		PreviousIndex++;
+		if (PreviousIndex >= PlayerCards.Num())
+			PreviousIndex = 0;
+
+		if (PlayerCards[PreviousIndex].Health > 0)
+			return PreviousIndex;
+	}
+}
+
+int32 AAutoSiegeGameModeBase::GetRandomLivingCard(TArray<FPlayerCard> PlayerCards)
+{
+	TArray<int32> Indexes;
+	for (int32 i = 0; i < PlayerCards.Num(); i++)
+	{
+		if (PlayerCards[i].Health > 0)
+		{
+			Indexes.Add(i);
+		}
+	}
+
+	const int32 RandomIndex = FMath::RandRange(0, Indexes.Num() - 1);
+	return Indexes[RandomIndex];
 }
 
 FBattleOpponent AAutoSiegeGameModeBase::LoadBattleOpponent(const int32 PlayerIndex)

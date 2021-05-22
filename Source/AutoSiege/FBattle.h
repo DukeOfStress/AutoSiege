@@ -5,28 +5,31 @@
 UENUM()
 enum EBattleActionType
 {
-	CardAttacks,
-	CardTakesDamage,
-	CardTaunts,
-	PlayerTakesDamage
+	CardAttacks
 };
 
 USTRUCT(BlueprintType)
 struct FBattleAction
 {
 	GENERATED_BODY()
-	
+
 	UPROPERTY(BlueprintReadOnly)
-	FPlayerCard Self;
-	
+	int32 CurrentPlayer;
+
 	UPROPERTY(BlueprintReadOnly)
 	TEnumAsByte<EBattleActionType> Type;
-	
+
 	UPROPERTY(BlueprintReadOnly)
-	int32 Damage;
-	
+	int32 AttackerUID;
+
 	UPROPERTY(BlueprintReadOnly)
-	FPlayerCard Target;
+	int32 DefenderUID;
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 NewAttackerHealth;
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 NewDefenderHealth;
 };
 
 USTRUCT(BlueprintType)
@@ -35,13 +38,16 @@ struct FBattle
 	GENERATED_BODY()
 	
 	UPROPERTY(BlueprintReadOnly)
-	int32 Player1;
+	TArray<FBattleAction> Actions;
 
 	UPROPERTY(BlueprintReadOnly)
-	int32 Player2;
+	bool IsDraw;
 	
 	UPROPERTY(BlueprintReadOnly)
-	TArray<FBattleAction> Actions;
+	int32 LosingPlayer;
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 NewLosingPlayerHealth;
 };
 
 USTRUCT(BlueprintType)
