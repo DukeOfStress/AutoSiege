@@ -292,6 +292,9 @@ void AAutoSiegeGameModeBase::TriggerBattlePhase()
 	TMap<int32,FBattleOpponent> BattleOpponents;
 	for (auto MatchUp : GameState_Ref->MatchUps)
 	{
+		BattleOpponents.Add(MatchUp.Player1, LoadBattleOpponent(MatchUp.Player2));
+		BattleOpponents.Add(MatchUp.Player2, LoadBattleOpponent(MatchUp.Player1));
+		
 		auto Battle = AutoBattle(
 			PlayerStateArray[MatchUp.Player1],
 			PlayerStateArray[MatchUp.Player2]
@@ -299,9 +302,6 @@ void AAutoSiegeGameModeBase::TriggerBattlePhase()
 		
 		Battles.Add(MatchUp.Player1, Battle);
 		Battles.Add(MatchUp.Player2, Battle);
-		
-		BattleOpponents.Add(MatchUp.Player1, LoadBattleOpponent(MatchUp.Player2));
-		BattleOpponents.Add(MatchUp.Player2, LoadBattleOpponent(MatchUp.Player1));
 	}
 	
 	for (auto PlayerController : PlayerControllerArray)

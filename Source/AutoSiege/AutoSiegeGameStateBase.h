@@ -30,7 +30,7 @@ public:
 	float RoundTimer = 15.f;
 
 	UPROPERTY(BlueprintReadOnly)
-	int32 TotalNumberOfPlayers = 4;
+	int32 TotalNumberOfPlayers = 2;
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Heroes)
 	TArray<FName> Heroes;
