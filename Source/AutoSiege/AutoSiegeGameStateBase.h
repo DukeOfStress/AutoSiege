@@ -39,6 +39,8 @@ public:
 	TEnumAsByte<GameStage> CurrentStage;
 
 	TArray<FMatchUp> MatchUps;
+
+	int32 BattleFinishedCounter = 0;
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnRep_RoundTimer();

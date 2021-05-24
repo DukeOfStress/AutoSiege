@@ -135,4 +135,8 @@ public:
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void BP_ShowBattle(const FBattleOpponent Opponent, const FBattle Battle);
+
+
+	UFUNCTION(BlueprintCallable, Server, Reliable)
+	void Server_BattleFinished();
 };

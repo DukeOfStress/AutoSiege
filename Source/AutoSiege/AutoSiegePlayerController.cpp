@@ -291,3 +291,21 @@ void AAutoSiegePlayerController::Client_ShowBattle_Implementation(const FBattleO
 
 	BP_ShowBattle(Opponent, Battle);
 }
+
+void AAutoSiegePlayerController::Server_BattleFinished_Implementation()
+{
+	if (!HasAuthority())
+		return;
+
+	// TODO: We probably want some kind of check to make sure the client isn't calling this multiple times.
+	//       This is fine for now.
+	GameState_Ref->BattleFinishedCounter++;
+
+	// TODO: We need to check this against the number of players left in the game, not the total amount.
+	if (GameState_Ref->BattleFinishedCounter >= GameState_Ref->TotalNumberOfPlayers)
+	{
+		// TODO: We should probably also have a time limit for how long a client is allowed to show a battle.
+		//       Once the timer runs out, we trigger the shop phase
+		GameMode_Ref->TriggerShopPhase();
+	}
+}
