@@ -106,12 +106,12 @@ void AAutoSiegePlayerController::Client_AllPlayersReady_Implementation(const TAr
 	BP_AllPlayersReady(Heroes);
 }
 
-void AAutoSiegePlayerController::Client_BeginShop_Implementation(const int32 Gold, const TArray<FPlayerCard>& PlayerCards, const int32 NextOpponent)
+void AAutoSiegePlayerController::Client_BeginShop_Implementation(const int32 Gold, const TArray<FPlayerCard>& PlayerCards, const int32 NextOpponent, const int32 ShopUpgradePrice)
 {
 	if (HasAuthority())
 		return;
 
-	BP_BeginShop(Gold, PlayerCards, NextOpponent);
+	BP_BeginShop(Gold, PlayerCards, NextOpponent, ShopUpgradePrice);
 }
 
 void AAutoSiegePlayerController::Server_UpgradeShopTier_Implementation()

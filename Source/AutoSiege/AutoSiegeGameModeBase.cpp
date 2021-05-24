@@ -150,6 +150,9 @@ void AAutoSiegeGameModeBase::CheckAllPlayersReady()
 
 void AAutoSiegeGameModeBase::TriggerShopPhase()
 {
+	if (GameState_Ref->CurrentStage == GameStage::Shop)
+		return;
+	
 	GameState_Ref->CurrentStage = GameStage::Shop;
 	GameState_Ref->RoundNumber++;
 	GameState_Ref->RoundTimer = 20.0f;
@@ -221,6 +224,9 @@ void AAutoSiegeGameModeBase::TriggerShopPhase()
 	{
 		auto PlayerCards = PlayerController->RefreshShopCards();
 
+		if (GameState_Ref->RoundNumber > 1 && PlayerController->PlayerState_Ref->ShopUpgradePrice > 1)
+			PlayerController->PlayerState_Ref->ShopUpgradePrice--;
+
 		int32 NextOpponent = 9999;
 		for (auto MatchUp : GameState_Ref->MatchUps)
 		{
@@ -232,7 +238,7 @@ void AAutoSiegeGameModeBase::TriggerShopPhase()
 		}
 
 		PlayerController->PlayerState_Ref->Gold = RoundGold;
-		PlayerController->Client_BeginShop(RoundGold, PlayerCards, NextOpponent);
+		PlayerController->Client_BeginShop(RoundGold, PlayerCards, NextOpponent, PlayerController->PlayerState_Ref->ShopUpgradePrice);
 	}
 }
 
@@ -240,7 +246,7 @@ TArray<FPlayerCard> AAutoSiegeGameModeBase::GetCardsFromPool(const int32 MaxTier
 {
 	TArray<FPlayerCard> PlayerCards;
 
-	if (MaxTier < 0 || MaxTier > 5)
+	if (MaxTier < 1 || MaxTier > 6)
 		return PlayerCards;
 
 	TArray<int32> TempPool = {};
@@ -382,7 +388,7 @@ FBattle AAutoSiegeGameModeBase::AutoBattle(AAutoSiegePlayerState* PS1, AAutoSieg
 	else if (!Player1HasLivingCards)
 	{
 		// Player2 Won
-		PS1->Health -= 3;
+		PS1->Health -= PS2->ShopTier + 1 + GetSumLivingCardTiers(Player2Cards);
 		Battle.IsDraw = false;
 		Battle.LosingPlayer = PS1->PlayerIndex;
 		Battle.NewLosingPlayerHealth = PS1->Health;
@@ -390,7 +396,7 @@ FBattle AAutoSiegeGameModeBase::AutoBattle(AAutoSiegePlayerState* PS1, AAutoSieg
 	else if (!Player2HasLivingCards)
 	{
 		// Player1 Won
-		PS2->Health -= 3;
+		PS2->Health -= PS1->ShopTier + 1 + GetSumLivingCardTiers(Player1Cards);
 		Battle.IsDraw = false;
 		Battle.LosingPlayer = PS2->PlayerIndex;
 		Battle.NewLosingPlayerHealth = PS2->Health;
@@ -436,6 +442,21 @@ int32 AAutoSiegeGameModeBase::GetRandomLivingCard(TArray<FPlayerCard> PlayerCard
 
 	const int32 RandomIndex = FMath::RandRange(0, Indexes.Num() - 1);
 	return Indexes[RandomIndex];
+}
+
+int32 AAutoSiegeGameModeBase::GetSumLivingCardTiers(TArray<FPlayerCard> PlayerCards)
+{
+	int32 TierSum = 0;
+
+	for (auto PlayerCard : PlayerCards)
+	{
+		if (PlayerCard.Health > 0)
+		{
+			TierSum += PlayerCard.BaseCardID / 512;
+		}
+	}
+
+	return TierSum;
 }
 
 FBattleOpponent AAutoSiegeGameModeBase::LoadBattleOpponent(const int32 PlayerIndex)
