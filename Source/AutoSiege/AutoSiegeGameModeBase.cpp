@@ -151,6 +151,7 @@ void AAutoSiegeGameModeBase::CheckAllPlayersReady()
 void AAutoSiegeGameModeBase::TriggerShopPhase()
 {
 	GameState_Ref->CurrentStage = GameStage::Shop;
+	GameState_Ref->RoundNumber++;
 	GameState_Ref->RoundTimer = 20.0f;
 	GetWorldTimerManager().SetTimer(
 		PlayerReadyTimerHandle, 
@@ -215,8 +216,6 @@ void AAutoSiegeGameModeBase::TriggerShopPhase()
 	int32 RoundGold = 2 + GameState_Ref->RoundNumber;
 	if (RoundGold > 10)
 		RoundGold = 10;
-
-	RoundGold = 10;
 	
 	for (auto PlayerController : PlayerControllerArray)
 	{

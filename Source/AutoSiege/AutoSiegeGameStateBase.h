@@ -24,7 +24,7 @@ class AUTOSIEGE_API AAutoSiegeGameStateBase : public AGameStateBase
 	GENERATED_BODY()
 
 public:
-	int32 RoundNumber = 1;
+	int32 RoundNumber = 0;
 	
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_RoundTimer)
 	float RoundTimer = 15.f;
