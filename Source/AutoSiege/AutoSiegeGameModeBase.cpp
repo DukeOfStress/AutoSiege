@@ -356,6 +356,7 @@ FBattle AAutoSiegeGameModeBase::AutoBattle(AAutoSiegePlayerState* PS1, AAutoSieg
 			const int32 DefenderIndex = GetRandomLivingCard(Player1Cards);
 
 			Player1Cards[DefenderIndex].Health -= Player2Cards[Player2Index].Power;
+			Player2Cards[Player2Index].Health -= Player1Cards[DefenderIndex].Power;
 
 			FBattleAction BattleAction = {};
 			BattleAction.Type = CardAttacks;

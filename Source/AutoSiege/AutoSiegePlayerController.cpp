@@ -235,7 +235,7 @@ void AAutoSiegePlayerController::Server_PlayCard_Implementation(const FPlayerCar
 
 	bool Succeeded = false;
 
-	if (PlayerState_Ref->HandCards.Contains(CardToPlay))
+	if (PlayerState_Ref->BoardCards.Num() < 7 && PlayerState_Ref->HandCards.Contains(CardToPlay))
 	{
 		Succeeded = true;
 	
