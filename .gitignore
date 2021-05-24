@@ -75,3 +75,22 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+ArtDoc/smallCardWIP.mb
+ArtDoc/SmallCardTextureWIP.spp
+ArtDoc/SmallCardMesh.mb
+ArtDoc/Character_1.TGA
+ArtDoc/CardFrameAlpha2.png
+ArtDoc/CardFrameAlpha.png
+ArtDoc/CardFrame/CardModelSmall_Character_1_Mat_Inst_OcclusionRoughnessMetallic.png
+ArtDoc/CardFrame/CardModelSmall_Character_1_Mat_Inst_Normal.png
+ArtDoc/CardFrame/CardModelSmall_Character_1_Mat_Inst_BaseColor.png
+ArtDoc/CardFrame/CardModelSmall_CardFrame_Mat_Inst_BaseColor.png
+ArtDoc/CardFrame/CardModelSmall_CardBack_Blue_Mat_Inst_OcclusionRoughnessMetallic.png
+ArtDoc/CardFrame/CardModelSmall_CardBack_Blue_Mat_Inst_Normal.png
+ArtDoc/CardFrame/CardModelSmall_CardBack_Blue_Mat_Inst_BaseColor.png
+ArtDoc/CardFrame/CardModelSmall_3DCard_Nothing_BaseColor.png
+ArtDoc/CardFrame/Card_ModelSmall.fbx
+ArtDoc/CardFrame.png
+ArtDoc/CardBack.png
+ArtDoc/Card_Model.FBX
+ArtDoc/.mayaSwatches/smallCardWIP.mb.swatches
