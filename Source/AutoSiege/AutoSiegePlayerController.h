@@ -64,10 +64,10 @@ public:
 
 	
 	UFUNCTION(Client, Reliable)
-	void Client_BeginShop(const int32 Gold, const TArray<FPlayerCard>& PlayerCards, const int32 NextOpponent);
+	void Client_BeginShop(const int32 Gold, const TArray<FPlayerCard>& PlayerCards, const int32 NextOpponent, const int32 ShopUpgradePrice);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void BP_BeginShop(const int32 Gold, const TArray<FPlayerCard>& PlayerCards, const int32 NextOpponent);
+	void BP_BeginShop(const int32 Gold, const TArray<FPlayerCard>& PlayerCards, const int32 NextOpponent, const int32 ShopUpgradePrice);
 
 
 	UFUNCTION(BlueprintCallable, Server, Reliable)

@@ -103,6 +103,7 @@ public:
 	bool PlayerHasLivingCards(TArray<FPlayerCard> PlayerCards);
 	int32 GetNextLivingAttacker(TArray<FPlayerCard> PlayerCards, int32 PreviousIndex);
 	int32 GetRandomLivingCard(TArray<FPlayerCard> PlayerCards);
+	int32 GetSumLivingCardTiers(TArray<FPlayerCard> PlayerCards);
 	FBattleOpponent LoadBattleOpponent(const int32 PlayerIndex);
 
 	int32 GenerateUID();
